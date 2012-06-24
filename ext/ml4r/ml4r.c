@@ -3,7 +3,7 @@
 /* our new native method; it just returns
  * the string "bonjour!" */
 static VALUE tce_hello_world(VALUE self) {
-  return rb_str_new2("hello world!");
+  return rb_str_new2("hello world");
 }
 
 /* ruby calls this to load the extension */

@@ -1,4 +1,5 @@
 require 'test/unit'
+p $:.inspect
 require 'ml4r'
 
 class TestCompilation < Test::Unit::TestCase
