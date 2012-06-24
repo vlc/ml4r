@@ -1,2 +1,2 @@
 require 'rubygems'
-require 'test_cpp_extension'
+require 'ml4r/ml4r'
