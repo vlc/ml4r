@@ -8,7 +8,7 @@ EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
 # that the extension should be rebuilt
 # after any change to the files in ext
 file "lib/#{NAME}/#{NAME}.#{EXT}" =>
-    Dir.glob("ext/#{NAME}/*{.rb,.c}") do
+    Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx}") do
   Dir.chdir("ext/#{NAME}") do
     # this does essentially the same thing
     # as what RubyGems does

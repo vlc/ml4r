@@ -8,11 +8,11 @@ p $:.inspect
 #  end
 #end
 
-require 'ml4r/example'
+#require 'ml4r/example'
+require 'ml4r/ml4r'
 
 class TestCompilation < Test::Unit::TestCase
   def test_hello_world
-    p Module.constants
-    assert_equal("hello world", ::Example.fact(5))
+    assert_equal("hello world", ::Ml4r.fact(5))
   end
 end
