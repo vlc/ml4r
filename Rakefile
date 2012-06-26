@@ -12,7 +12,7 @@ file "lib/#{NAME}/#{NAME}.#{EXT}" =>
   Dir.chdir("ext/#{NAME}") do
     # this does essentially the same thing
     # as what RubyGems does
-    ruby "extconf.rb"
+    ruby "extconf.rb --with-boost-dir=/opt/local"
     sh "make"
   end
   cp "ext/#{NAME}/#{NAME}.#{EXT}", "lib/#{NAME}"
