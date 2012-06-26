@@ -2,7 +2,7 @@ require 'rake/testtask'
 require 'rake/clean'
 
 NAME = 'ml4r'
-EXT  = "bundle"
+EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
 
 # rule to build the extension: this says
 # that the extension should be rebuilt
