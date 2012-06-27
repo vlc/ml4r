@@ -16,7 +16,9 @@ public:
 
 extern double Foo;
 int fact(int n);
-#include "LinearRegression.h"
+
+%include "LinearRegression.h"
+
 class Jamie
 {
 public:
