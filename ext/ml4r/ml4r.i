@@ -1,8 +1,8 @@
-%module ml4r
+%module ml4r_example
 %{
 extern double Foo;
 int fact(int n);
-#include "LinearRegression.h"
+// #include "LinearRegression.h"
 
 class Jamie
 {
@@ -17,7 +17,7 @@ public:
 extern double Foo;
 int fact(int n);
 
-%include "LinearRegression.h"
+// %include "LinearRegression.h"
 
 class Jamie
 {
