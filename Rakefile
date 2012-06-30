@@ -4,9 +4,9 @@ require 'rake/clean'
 NAME = 'ml4r'
 EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
 
-def hack_linear_regression
-  dat = IO.readlines("LinearRegression_wrap.cxx")
-  File.open("LinearRegression_wrap.cxx", 'w') { |f| 
+def hack_wrapper_to_include_boost_earlier
+  dat = IO.readlines("ml4r_wrap.cxx")
+  File.open("ml4r_wrap.cxx", 'w') { |f| 
     f.puts "// Haack to make swig/rice/boost play nice together"
     f.puts "#include <boost/numeric/ublas/matrix.hpp>"
     dat.each { |line| f.puts line }
@@ -19,8 +19,8 @@ end
 file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx,*.i}") do
   Dir.chdir("ext/#{NAME}") do
   	# Regenerate the c++ wrappers if the swig interface files have changed
-    Dir.glob("*.i").each { |i_file| `swig -ruby -c++ #{i_file}` }
-  	hack_linear_regression()
+    p `swig -ruby -c++ ml4r.i` 
+  	hack_wrapper_to_include_boost_earlier()
 
     # this does essentially the same thing as what RubyGems does
     ruby "extconf.rb --with-boost-dir=/opt/local"

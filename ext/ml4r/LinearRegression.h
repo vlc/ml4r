@@ -16,8 +16,8 @@ using std::pair;
 class LinearRegression
 {
 public:
-	LinearRegression();
-	~LinearRegression();
+	 LinearRegression() : m_constantIsFixed(false), m_paramsAreValid(false) {}
+	~LinearRegression() {}
 
     void setXs(std::vector<std::vector<double> > xs);
     void setYs(std::vector<double> ys);

@@ -1,23 +1,17 @@
-%module ml4r_example
+%module ml4r
+%include LinearRegression.i
 %{
-extern double Foo;
-int fact(int n);
-// #include "LinearRegression.h"
 
-class Jamie
-{
-public:
-    Jamie()  {}	
-    ~Jamie() {}
-    int foo() { return 42; }
-};
 
+  class Jamie
+  {
+  public:
+      Jamie()  {}	
+      ~Jamie() {}
+      int foo() { return 42; }
+  };
 %}
 
-extern double Foo;
-int fact(int n);
-
-// %include "LinearRegression.h"
 
 class Jamie
 {

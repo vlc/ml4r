@@ -14,12 +14,6 @@ using std::vector;
 using ublas::prod;
 using ublas::matrix;
 
-LinearRegression::LinearRegression() : m_constantIsFixed(false), m_paramsAreValid(false)
-{}
-
-LinearRegression::~LinearRegression()
-{}
-
 void LinearRegression::setXs(vector<vector<double> > xs)
 {
     m_xs = xs;
