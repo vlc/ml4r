@@ -4,14 +4,25 @@ require 'rake/clean'
 NAME = 'ml4r'
 EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
 
+def hack_linear_regression
+  dat = IO.readlines("LinearRegression_wrap.cxx")
+  File.open("LinearRegression_wrap.cxx", 'w') { |f| 
+    f.puts "// Haack to make swig/rice/boost play nice together"
+    f.puts "#include <boost/numeric/ublas/matrix.hpp>"
+    dat.each { |line| f.puts line }
+  }
+end
+
 # rule to build the extension: this says
 # that the extension should be rebuilt
 # after any change to the files in ext
-file "lib/#{NAME}/#{NAME}.#{EXT}" =>
-    Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx}") do
+file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx,*.i}") do
   Dir.chdir("ext/#{NAME}") do
-    # this does essentially the same thing
-    # as what RubyGems does
+  	# Regenerate the c++ wrappers if the swig interface files have changed
+    Dir.glob("*.i").each { |i_file| `swig -ruby -c++ #{i_file}` }
+  	hack_linear_regression()
+
+    # this does essentially the same thing as what RubyGems does
     ruby "extconf.rb --with-boost-dir=/opt/local"
     sh "make"
   end

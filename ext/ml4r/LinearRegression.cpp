@@ -6,12 +6,11 @@
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/foreach.hpp>
 
-namespace ublas = boost::numeric::ublas;
-using ublas::matrix;
-
-#include "LinearRegression.h"
+#include "LinearRegression.h" 
 #include "Utils.h"
+namespace ublas = boost::numeric::ublas;
 
+using std::vector;
 using ublas::prod;
 using ublas::matrix;
 
