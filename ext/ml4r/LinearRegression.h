@@ -39,6 +39,7 @@ public:
     double                       getAdjustedRSquared();
     double                       getRSquaredPrediction();
     
+    // BOOM THIS IS THE PROBLEM HERE - CAN'T INSTANTIATE A PURE VIRTUAL CLASS
     virtual void Execute() = 0;
 
 protected:
