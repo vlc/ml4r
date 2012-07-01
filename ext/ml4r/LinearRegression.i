@@ -1,6 +1,6 @@
 %module ml4r
 %{
-  #include "LinearRegression.h"
+  #include "OLSLinearRegression.h"
 %}
 
-%include "LinearRegression.h"
+%include "OLSLinearRegression.h"
