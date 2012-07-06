@@ -16,7 +16,7 @@ end
 # rule to build the extension: this says
 # that the extension should be rebuilt
 # after any change to the files in ext
-file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx,*.i}") do
+file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/*{.rb,.c,.cpp,.cxx,*.i,*.h}") do
   Dir.chdir("ext/#{NAME}") do
   	# Regenerate the c++ wrappers if the swig interface files have changed
     p `swig -ruby -c++ ml4r.i` 

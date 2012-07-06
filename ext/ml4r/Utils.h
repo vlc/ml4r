@@ -20,9 +20,9 @@ namespace Utils
     }
 
     template<class T>
-    vector<T> vectorAbs(const vector<T>& vec)
+    std::vector<T> vectorAbs(const std::vector<T>& vec)
     {
-        vector<T> absVec;
+        std::vector<T> absVec;
         absVec.reserve(vec.size());
 
         for (unsigned int i=0; i < vec.size(); ++i)
@@ -32,7 +32,7 @@ namespace Utils
         return absVec; 
     }
 
-    template<class T> vector<T>& operator+=(vector<T>& vec, const vector<T>& vec2)
+    template<class T> std::vector<T>& operator+=(std::vector<T>& vec, const std::vector<T>& vec2)
     {
         if (vec.size() != vec2.size())
             throw std::runtime_error("Can't add vectors of different sizes");
@@ -42,7 +42,7 @@ namespace Utils
     }
 
     template <class T> 
-    vector<T>& operator+=(vector<T>& vec, const float offset)
+    std::vector<T>& operator+=(std::vector<T>& vec, const float offset)
     {
         for (unsigned int i=0; i < vec.size(); ++i)
             vec.at(i) += offset;

@@ -2,6 +2,11 @@
 #include "MathUtils.h"
 #include "Utils.h"
 
+#include <iostream>
+#include <boost/numeric/ublas/io.hpp>
+using std::cout;
+using std::endl;
+
 namespace ublas = boost::numeric::ublas;
 using Utils::operator+=;
 using ublas::matrix;
@@ -37,6 +42,7 @@ void OLSLinearRegression::Execute()
 void OLSLinearRegression::EstimateBs()
 {
     matrix<double> Y = m_Y;
+    cout << Y << endl;
     if (m_constantIsFixed)
     {
         for (int i = 0; i < m_n; ++i) Y(i, 0) -= m_constant;
@@ -51,6 +57,8 @@ void OLSLinearRegression::EstimateBs()
 
     if (!m_constantIsFixed)
         m_constant = m_B(m_p-1, 0);
+
+    cout << m_B << endl;
 
     m_paramsAreValid = true;
 }

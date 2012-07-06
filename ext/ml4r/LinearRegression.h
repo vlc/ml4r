@@ -2,9 +2,7 @@
 #define LinearRegression_h__
 
 #include <boost/numeric/ublas/matrix.hpp>
-namespace ublas = boost::numeric::ublas;
 using boost::numeric::ublas::matrix;
-
 
 #include <vector>
 #include <utility>
@@ -45,8 +43,8 @@ public:
 protected:
 
     // helpers
-    ublas::matrix<double> multiplyMatrixByWeights(ublas::matrix<double>& mat);
-    ublas::matrix<double> multiplyWeightsByMatrix(ublas::matrix<double>& mat);
+    boost::numeric::ublas::matrix<double> multiplyMatrixByWeights(boost::numeric::ublas::matrix<double>& mat);
+    boost::numeric::ublas::matrix<double> multiplyWeightsByMatrix(boost::numeric::ublas::matrix<double>& mat);
 
 
     virtual void checkDimensions();
@@ -73,15 +71,15 @@ protected:
     std::vector<double>           m_bs;
     double                   m_constant;
 
-    ublas::matrix<double>   m_X;
-    ublas::matrix<double>   m_Y;
-    ublas::matrix<double>   m_B; // m_B = prod(m_A, m_Y)
-    ublas::matrix<double>   m_A; // m_A = (X'WX)-1 X'W
+    boost::numeric::ublas::matrix<double>   m_X;
+    boost::numeric::ublas::matrix<double>   m_Y;
+    boost::numeric::ublas::matrix<double>   m_B; // m_B = prod(m_A, m_Y)
+    boost::numeric::ublas::matrix<double>   m_A; // m_A = (X'WX)-1 X'W
     std::vector<double>     m_h_diagonal; // hat ublas::matrix = XA. This is the diagonal of it.
-    ublas::matrix<double>   m_Xtranspose;
-    ublas::matrix<double>   m_Xtranspose_W;
-    ublas::matrix<double>   m_Xtranspose_W_X;
-    ublas::matrix<double>   m_Xtranspose_W_X_inverse;
+    boost::numeric::ublas::matrix<double>   m_Xtranspose;
+    boost::numeric::ublas::matrix<double>   m_Xtranspose_W;
+    boost::numeric::ublas::matrix<double>   m_Xtranspose_W_X;
+    boost::numeric::ublas::matrix<double>   m_Xtranspose_W_X_inverse;
 
     // Statistics of the regression
     std::vector<double>          m_tStatistics;

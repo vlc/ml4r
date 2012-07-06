@@ -5,6 +5,9 @@
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/foreach.hpp>
+#include <iostream>
+using std::cout;
+using std::endl;
 
 #include "LinearRegression.h" 
 #include "Utils.h"
@@ -16,6 +19,12 @@ using ublas::matrix;
 
 void LinearRegression::setXs(vector<vector<double> > xs)
 {
+    for (int i=0; i<xs.size(); ++i)
+    {
+        for (int j=0; j<xs.at(i).size(); ++j)
+            cout << xs.at(i).at(j) << ",";
+        cout << endl;
+    }
     m_xs = xs;
 }
 
