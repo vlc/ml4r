@@ -9,7 +9,8 @@
 using std::cout;
 using std::endl;
 
-#include "LinearRegression.h" 
+#include "LinearRegression.h"
+#include "MatrixInversion.h"
 #include "Utils.h"
 namespace ublas = boost::numeric::ublas;
 
@@ -240,18 +241,22 @@ void LinearRegression::populateMembers()
     }
 
     // form the matrix X'  [P x N]
+    cout << "m_X: " << m_X << endl;
     m_Xtranspose = ublas::trans(m_X);
+    cout << "m_Xtranspose: " << m_Xtranspose << endl;
 
     // form the matrix X'WX [P x N] . [N x N] . [N x P] => [P x P]
     m_Xtranspose_W_X.resize(m_p, m_p);
     m_Xtranspose_W = multiplyMatrixByWeights(m_Xtranspose);
+    cout << "m_Xtranspose: " << m_Xtranspose << endl;
     m_Xtranspose_W_X = ublas::prod(m_Xtranspose_W, m_X);
+    cout << "m_Xtranspose_W_X: " << m_Xtranspose_W_X << endl;
     
     // Invert the matrix 
 
     m_Xtranspose_W_X_inverse.resize(m_p, m_p);
     // TODO: Uncomment me
-    // InvertMatrix(m_Xtranspose_W_X, m_Xtranspose_W_X_inverse);
+    InvertMatrix(m_Xtranspose_W_X, m_Xtranspose_W_X_inverse);
 }
 
 void LinearRegression::calculateParameterStatistics()
