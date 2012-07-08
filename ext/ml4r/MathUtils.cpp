@@ -3,6 +3,7 @@
 #include <boost/foreach.hpp>
 #include "Utils.h"
 #include <stdlib.h>
+#include <cmath>
 #include <stdexcept>
 using std::runtime_error;
 #include <map>
@@ -22,14 +23,14 @@ vector<double> MathUtils::solveSystemOfLinearEquations(vector<vector<double> > a
 {
     if (!a.size()) throw std::runtime_error("[MathUtils::solveSystemOfLinearEquations] called with empty input");
 
-    // used to solve 
-    //      A.x = b 
+    // used to solve
+    //      A.x = b
     // where:
     //      A is an n x n matrix
     //      x and b are n x 1 vectors
     MathUtils::checkSystemDimensions(a,b);
     unsigned long n = a.size();
-        
+
     // perform Gaussian elimination
     for (unsigned long i = 0; i < n - 1; ++i)
     {
@@ -51,7 +52,7 @@ vector<double> MathUtils::solveSystemOfLinearEquations(vector<vector<double> > a
         double denominator = a.at(index).at(index);
         if (!denominator)
             throw std::runtime_error("[MathUtils::solveSystemOfLinearEquations] Cannot divide by zero ==> no unique solution. Is system identified? Have you included too many variables?");
-        
+
         double coefficient = val / denominator;
         x.at(index) = coefficient;
     }
