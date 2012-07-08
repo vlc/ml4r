@@ -20,12 +20,6 @@ using ublas::matrix;
 
 void LinearRegression::setXs(vector<vector<double> > xs)
 {
-    for (int i=0; i<xs.size(); ++i)
-    {
-        for (int j=0; j<xs.at(i).size(); ++j)
-            cout << xs.at(i).at(j) << ",";
-        cout << endl;
-    }
     m_xs = xs;
 }
 
@@ -89,14 +83,8 @@ void LinearRegression::calculateParameterStatistics2()
     ublas::matrix<double> X_transpose_X = ublas::prod(ublas::trans(X), X);
 
     // Invert the matrix 
-    // cout << X_transpose_X << endl;
     ublas::matrix<double> X_transpose_X_inverse(X_transpose_X);
-    // cout << X_transpose_X_inverse << endl;
-    
-    // TODO: Uncomment me
-    // InvertMatrix(X_transpose_X, X_transpose_X_inverse);
-
-    // cout << X_transpose_X_inverse << endl;
+    InvertMatrix(X_transpose_X, X_transpose_X_inverse);
 
     // Also construct a t-stat for the constant
     if (!m_constantIsFixed) m_bs.push_back(m_constant);
@@ -202,12 +190,6 @@ vector<double>& LinearRegression::getTstatistics()
 
 void LinearRegression::populateMembers()
 {
-//     ublas::matrix<double>   m_X;
-//     ublas::matrix<double>   m_Y;
-//     ublas::matrix<double>   m_Xtranspose;
-//     ublas::matrix<double>   m_Xtranspose_W_X;
-//     ublas::matrix<double>   m_Xtranspose_W_X_inverse;
-
     m_k = m_xs.front().size();
     m_p = m_k + (m_constantIsFixed ? 0 : 1);
     m_n = m_xs.size();
@@ -220,10 +202,6 @@ void LinearRegression::populateMembers()
         matrixIterator = std::copy(row.begin(), row.end(), matrixIterator);
         if (!m_constantIsFixed) *(matrixIterator++) = 1.0;
     }    
-
-//     for (int i = 0; i < m_X.size1(); ++i)
-//         for (int j = 0; j < m_X.size2(); ++j)
-//             vlcMessage.Write(ToString(m_X(i, j)));
 
     // populate m_Y
     m_Y.resize(m_n, 1);
@@ -241,21 +219,15 @@ void LinearRegression::populateMembers()
     }
 
     // form the matrix X'  [P x N]
-    cout << "m_X: " << m_X << endl;
     m_Xtranspose = ublas::trans(m_X);
-    cout << "m_Xtranspose: " << m_Xtranspose << endl;
-
+    
     // form the matrix X'WX [P x N] . [N x N] . [N x P] => [P x P]
     m_Xtranspose_W_X.resize(m_p, m_p);
     m_Xtranspose_W = multiplyMatrixByWeights(m_Xtranspose);
-    cout << "m_Xtranspose: " << m_Xtranspose << endl;
     m_Xtranspose_W_X = ublas::prod(m_Xtranspose_W, m_X);
-    cout << "m_Xtranspose_W_X: " << m_Xtranspose_W_X << endl;
     
     // Invert the matrix 
-
     m_Xtranspose_W_X_inverse.resize(m_p, m_p);
-    // TODO: Uncomment me
     InvertMatrix(m_Xtranspose_W_X, m_Xtranspose_W_X_inverse);
 }
 

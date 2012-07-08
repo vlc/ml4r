@@ -42,11 +42,11 @@ void OLSLinearRegression::Execute()
 void OLSLinearRegression::EstimateBs()
 {
     matrix<double> Y = m_Y;
-    cout << Y << endl;
     if (m_constantIsFixed)
     {
         for (int i = 0; i < m_n; ++i) Y(i, 0) -= m_constant;
     }
+    
     m_A = prod(m_Xtranspose_W_X_inverse, m_Xtranspose_W);
     m_B = prod(m_A, Y);
     
@@ -57,8 +57,6 @@ void OLSLinearRegression::EstimateBs()
 
     if (!m_constantIsFixed)
         m_constant = m_B(m_p-1, 0);
-
-    cout << m_B << endl;
 
     m_paramsAreValid = true;
 }

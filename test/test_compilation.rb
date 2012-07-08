@@ -17,7 +17,6 @@ class TestCompilation < Test::Unit::TestCase
   	#p Module.constants.grep(/Lin/)
   	#p Ml4r::Jamie.methods
     # assert_equal("hello world", ::Ml4r.fact(5))
-    p Module.constants.grep(/Ml4/)
     assert_equal(42, Ml4r::Jamie.new.foo)
   end
 end
