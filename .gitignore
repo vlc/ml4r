@@ -1,0 +1,7 @@
+*.o
+*_wrap.cxx
+*.bundle
+*.so
+*.gem
+Makefile
+.DS_Store
