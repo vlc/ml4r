@@ -1,5 +1,7 @@
 require 'rake/testtask'
 require 'rake/clean'
+$: << 'tasks'
+require 'gem_tasks'
 
 NAME = 'ml4r'
 EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
@@ -47,3 +49,10 @@ end
 
 desc "Run tests"
 task :default => :test
+
+desc "Build the gem"
+task :build_gem do
+  version = increment_gemspec_version
+  `gem build ml4r.gemspec`
+  `gem push ml4r-#{version}.gem`
+end

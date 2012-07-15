@@ -6,7 +6,7 @@ A Ruby based library of Maching Learning algorithms.
 
 Supports:
 
-* Nothing yet
+* Least Squares Linear Regression
 
 ## Installation ##
     gem install ml4r

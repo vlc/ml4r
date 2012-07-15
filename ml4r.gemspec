@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ml4r'
-  s.version     = '0.1.0'
+s.version     = '0.1.2'
   s.date        = '2012-06-24'
   s.summary     = "A ruby based library of Maching Learning (ML) algorithms"
   s.description = "A ruby based library of Maching Learning (ML) algorithms"
