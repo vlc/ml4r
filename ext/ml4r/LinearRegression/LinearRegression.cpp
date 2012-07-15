@@ -10,8 +10,8 @@ using std::cout;
 using std::endl;
 
 #include "LinearRegression/LinearRegression.h"
-#include "MatrixInversion.h"
-#include "Utils.h"
+#include "utils/MatrixInversion.h"
+#include "utils/Utils.h"
 namespace ublas = boost::numeric::ublas;
 
 using std::vector;
