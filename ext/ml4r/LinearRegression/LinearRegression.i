@@ -1,7 +1,7 @@
 %module ml4r
 %{
-  #include "LinearRegression.h"
-  #include "OLSLinearRegression.h"
+  #include "LinearRegression/LinearRegression.h"
+  #include "LinearRegression/OLSLinearRegression.h"
 %}
 
 %include "std_vector.i"
@@ -13,5 +13,5 @@ namespace std {
    %template(PairVectorDoubleDouble) std::pair<std::vector<double>,double>;
 }
 
-%include "LinearRegression.h"
-%include "OLSLinearRegression.h"
+%include "LinearRegression/LinearRegression.h"
+%include "LinearRegression/OLSLinearRegression.h"

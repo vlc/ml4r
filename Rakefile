@@ -7,8 +7,8 @@ NAME = 'ml4r'
 EXT  = `uname` =~ /Linux/ ? "so" : "bundle"
 
 def hack_wrapper_to_include_boost_earlier
-  dat = IO.readlines("ml4r_wrap.cxx")
-  File.open("ml4r_wrap.cxx", 'w') { |f| 
+  dat = IO.readlines("ml4r_wrap.cpp")
+  File.open("ml4r_wrap.cpp", 'w') { |f| 
     f.puts "// Haack to make swig/rice/boost play nice together"
     f.puts "#include <boost/numeric/ublas/matrix.hpp>"
     dat.each { |line| f.puts line }
@@ -22,6 +22,7 @@ file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/**/*{.rb,.c,.cpp,.cxx
   Dir.chdir("ext/#{NAME}") do
   	# Regenerate the c++ wrappers if the swig interface files have changed
     p `swig -ruby -c++ ml4r.i` 
+    FileUtils.mv("ml4r_wrap.cxx", "ml4r_wrap.cpp")
   	hack_wrapper_to_include_boost_earlier()
 
     # this does essentially the same thing as what RubyGems does

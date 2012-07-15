@@ -1,4 +1,4 @@
-#include "OLSLinearRegression.h"
+#include "LinearRegression/OLSLinearRegression.h"
 #include "MathUtils.h"
 #include "Utils.h"
 
