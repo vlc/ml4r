@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <cmath>
 #include <stdexcept>
-using std::runtime_error;
 #include <map>
 using std::map;
+using std::runtime_error;
 
 void MathUtils::checkSystemDimensions(vector<vector<double> >& a, vector<double>& b)
 {

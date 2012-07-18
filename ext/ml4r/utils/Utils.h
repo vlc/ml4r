@@ -3,9 +3,24 @@
 
 #include <vector>
 #include <stdexcept>
+#include <map>
+#include <boost/foreach.hpp>
 
 namespace Utils
 {
+
+    template<class Container, class T> 
+    bool hasElement(const Container& m, T element)
+    {
+        return find(m.begin(), m.end(), element) != m.end();
+    }
+
+    template<class T, class U>
+    bool hasElement(const std::map<T,U>& m, T element)
+    {
+        return m.find(element) != m.end();
+    }
+
     template<typename T>
     T vectorSum(const std::vector<T>& vec)
     {
@@ -19,6 +34,84 @@ namespace Utils
         return sum;
     }
 
+    template<class T> vector<T>
+    vectorRange(T start, T end, T stepSize = 1)
+    {
+        int numSteps = (end - start) / stepSize + 1;
+        vector<T> returnValue;
+        returnValue.resize(numSteps);
+
+        for (int i = 0; i < numSteps; ++i)
+            returnValue.at(i) = start + i * stepSize; 
+
+        return returnValue;
+    }
+
+    template<class T> vector<T>
+    vectorRepeat(vector<T>& vec, int totalDesiredLength)
+    {
+        vector<T> returnValue;
+        returnValue.resize(totalDesiredLength);
+        int vectorSize = vec.size();
+
+        for (int i = 0; i < totalDesiredLength; ++i)
+        {
+            int index = i % vectorSize;
+            returnValue.at(i) = vec.at(index);
+        }
+        return returnValue;
+    }
+
+    template<class T> vector<T>
+    vectorShuffle(vector<T>& vec)
+    {
+
+        vector<int> sortVector = vectorOfRandomInt(vec.size());
+        vector<T> returnValue  = vectorSortUsingOtherVector(vec, sortVector);
+        return returnValue;
+    }
+
+    vector<int> vectorOfRandomInt(int length)
+    {
+        vector<int> returnValue;
+        returnValue.reserve(length);
+        for (int i = 0; i < length; ++i)
+            returnValue.push_back(rand());
+
+        return returnValue;
+    }
+
+    template<class T, class U>
+    vector<T> vectorSortUsingOtherVector(vector<T>& vec, vector<U>& otherVector)
+    {
+        if (otherVector.size() != vec.size())
+            throw std::runtime_error("[] - vec and otherVector must be of equal size.");
+
+        vector<U> otherVectorSorted = otherVector;
+        sort(otherVectorSorted.begin(), otherVectorSorted.end());
+        map<U, int> newPosition;
+        int index = -1;
+        BOOST_FOREACH(U& e, otherVectorSorted)
+        {
+            ++index;
+            if (index == 0 || e != otherVectorSorted.at(index-1))
+                newPosition[e] = index;
+        }
+
+        vector<T> returnValue;
+        returnValue.resize(vec.size());
+
+        index = -1;
+        BOOST_FOREACH(T& e, vec)
+        {
+            ++index;
+            U sortValue = otherVector.at(index);
+            int newIndex = newPosition[sortValue]++; // ++ happens after newIndex is assigned
+            returnValue[newIndex] = e;
+        }
+        return returnValue;
+    }
+    
     template<class T>
     std::vector<T> vectorAbs(const std::vector<T>& vec)
     {
