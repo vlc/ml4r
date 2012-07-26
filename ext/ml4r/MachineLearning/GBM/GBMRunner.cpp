@@ -9,15 +9,16 @@
 #include "MachineLearning/DecisionTree/DecisionTreeNode.h"
 #include "MachineLearning/DecisionTree/FeatureInteraction.h"
 
+#include "utils/VlcMessage.h"
 
-#ifdef TBB_USE_THREADING_TOOLS
-#undef TBB_USE_THREADING_TOOLS
-#endif
-#define TBB_USE_THREADING_TOOLS 1
-#include "tbb/task_scheduler_init.h"
-#include "tbb/parallel_for.h"
-#include "tbb/blocked_range.h"
-#include "tbb/explicit_range.h"
+// #ifdef TBB_USE_THREADING_TOOLS
+// #undef TBB_USE_THREADING_TOOLS
+// #endif
+// #define TBB_USE_THREADING_TOOLS 1
+// #include "tbb/task_scheduler_init.h"
+// #include "tbb/parallel_for.h"
+// #include "tbb/blocked_range.h"
+// #include "tbb/explicit_range.h"
 
 #include <math.h>
 #include <boost/pointer_cast.hpp>
@@ -66,15 +67,16 @@ void GBMRunner::estimateMore(int numTrees)
     int numFolds             = m_data->getNumFolds();
     int numThreads           = numFolds; // TODO: change this!
 
-    tbb::task_scheduler_init init(numFolds);
-    static tbb::simple_partitioner sp;
+    // tbb::task_scheduler_init init(numFolds);
+    // static tbb::simple_partitioner sp;
 
     int grainSize       = numFolds / numThreads;
 
-    tbb::parallel_for(explicit_range<size_t>(0, numFolds, grainSize),
-        [&](const explicit_range<size_t>& r) {
-            int threadNumber = r.begin() / grainSize;
-            for(size_t foldIndex=r.begin(); foldIndex!=r.end(); ++foldIndex)
+    // tbb::parallel_for(explicit_range<size_t>(0, numFolds, grainSize),
+    //     [&](const explicit_range<size_t>& r) {
+    //         int threadNumber = r.begin() / grainSize;
+    //         for(size_t foldIndex=r.begin(); foldIndex!=r.end(); ++foldIndex)
+            for (int foldIndex = 0; foldIndex < numFolds; ++foldIndex)
             {
                 vlcMessage.Begin("Estimating more...");
                 
@@ -83,7 +85,7 @@ void GBMRunner::estimateMore(int numTrees)
 
                 vlcMessage.End();
             }
-    }, sp);
+    // }, sp);
 }
 
 void GBMRunner::capTrees( int numTrees )

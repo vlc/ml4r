@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
+#include <utility>
+using std::pair;
 using boost::shared_ptr;
 using std::vector;
 
@@ -25,7 +27,7 @@ vector<T> MLUtils::bagObjectsWithReplacement(vector<T> objects, int bagSize)
 {
     vector<T> inBagObjects;
 
-    int numTrainingExperiments  = objects.size();
+    int numTrainingExperiments  = (int) objects.size();
     int numBagged               = 0;
 
     inBagObjects.reserve(bagSize);
@@ -33,7 +35,7 @@ vector<T> MLUtils::bagObjectsWithReplacement(vector<T> objects, int bagSize)
     for (int i = 0; i < bagSize; ++i)
     {
         double unit_rand = rand() * 1.0 / (RAND_MAX + 1.0);
-        int index = unit_rand * objects.size();
+        long index = unit_rand * objects.size();
         inBagObjects.push_back(objects.at(index));
     }
     return inBagObjects;

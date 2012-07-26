@@ -3,7 +3,6 @@
 
 #include "MachineLearning/MLOutput.h"
 
-
 class MLData;
 class RandomForestParameters;
 class MLExperiment;
@@ -26,7 +25,7 @@ public:
     int  getNumTrees();
 
 protected:
-    shared_ptr<RandomForestParameters>    m_parameters;
+    shared_ptr<RandomForestParameters>     m_parameters;
     vector<shared_ptr<DecisionTreeNode> >  m_headNodes;
 private:
 };

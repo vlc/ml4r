@@ -6,6 +6,7 @@
 #include "MachineLearning/MLData/MLData.h"
 #include "MachineLearning/GBM/GBMEstimator.h"
 #include "utils/Utils.h"
+#include "utils/StochasticUtils.h"
 
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
@@ -212,7 +213,8 @@ vector<shared_ptr<DecisionTreeNode> > NodeSplitter::splitNode( shared_ptr<Decisi
         BOOST_FOREACH(double improvement, vecImprovements)
             exp_u.push_back(m_scale * improvement / bestImprovement);
 
-        int bestIndex = OTUtils::chooseCategoryFromPdf(OTUtils::convertHistogramToPdf(exp_u));
+        vector<float> pdf = StochasticUtils::convertHistogramToPdf(exp_u);
+        int bestIndex = StochasticUtils::chooseCategoryFromPdf(pdf);
         bestImprovement = vecImprovements.at(bestIndex);
         bestSplit       = vecSplits.at(bestIndex);
     }
@@ -392,7 +394,8 @@ shared_ptr<SplitDefinition> NodeSplitter::createContinuousSplitDefinition( share
         {
             exp_u.push_back(exp(m_scale * improvement / bestImprovement));
         }
-        bestIndex = OTUtils::chooseCategoryFromPdf(OTUtils::convertHistogramToPdf(exp_u),"improvements");
+        vector<float> pdf = StochasticUtils::convertHistogramToPdf(exp_u);
+        bestIndex = StochasticUtils::chooseCategoryFromPdf(pdf, "improvements");
     }
 
     bestLhsSumZ        = vecLhsSumZ.at(bestIndex);

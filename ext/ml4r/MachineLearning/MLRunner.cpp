@@ -6,14 +6,16 @@
 #include "MachineLearning/MLEstimator.h"
 #include "MachineLearning/MLEstimatorFactory.h"
 
-#ifdef TBB_USE_THREADING_TOOLS
-#undef TBB_USE_THREADING_TOOLS
-#endif
-#define TBB_USE_THREADING_TOOLS 1
-#include "tbb/task_scheduler_init.h"
-#include "tbb/parallel_for.h"
-#include "tbb/blocked_range.h"
-#include "tbb/explicit_range.h"
+#include "utils/VlcMessage.h"
+
+// #ifdef TBB_USE_THREADING_TOOLS
+// #undef TBB_USE_THREADING_TOOLS
+// #endif
+// #define TBB_USE_THREADING_TOOLS 1
+// #include "tbb/task_scheduler_init.h"
+// #include "tbb/parallel_for.h"
+// #include "tbb/blocked_range.h"
+// #include "tbb/explicit_range.h"
 
 #include <boost/foreach.hpp>
 
@@ -56,21 +58,22 @@ void MLRunner::input()
 void MLRunner::estimate()
 {
     vector<int>& foldNumbers = m_data->getFoldNumbers();
-    int numFolds             = foldNumbers.size();
-    int numThreads           = numFolds; // TODO: change this!
+    long numFolds             = foldNumbers.size();
+    long numThreads           = numFolds; // TODO: change this!
 
-    tbb::task_scheduler_init init(numFolds);
-    static tbb::simple_partitioner sp;
+    // tbb::task_scheduler_init init(numFolds);
+    // static tbb::simple_partitioner sp;
 
-    int grainSize       = numFolds / numThreads;
+    //int grainSize       = numFolds / numThreads;
 
     m_outputObjects.resize(numFolds);
     m_estimators.resize(numFolds);
 
-    tbb::parallel_for(explicit_range<size_t>(0, numFolds, grainSize),
-        [&](const explicit_range<size_t>& r) {
-            int threadNumber = r.begin() / grainSize;
-            for(size_t foldIndex=r.begin(); foldIndex!=r.end(); ++foldIndex)
+    //tbb::parallel_for(explicit_range<size_t>(0, numFolds, grainSize),
+    //    [&](const explicit_range<size_t>& r) {
+    //        int threadNumber = r.begin() / grainSize;
+    //        for(size_t foldIndex=r.begin(); foldIndex!=r.end(); ++foldIndex)
+            for (long foldIndex = 0; foldIndex < numFolds; ++foldIndex)
             {
                 vlcMessage.Begin("Estimating");
                 int foldNumber = foldNumbers.at(foldIndex);
@@ -81,7 +84,7 @@ void MLRunner::estimate()
                 
                 vlcMessage.End();
             }
-    }, sp);
+    //}, sp);
 }
 
 void MLRunner::output()
@@ -132,7 +135,7 @@ vector<double> MLRunner::getPredictions( vector<shared_ptr<MLExperiment> > exper
 
 vector<double> MLRunner::getMeanTrainingPredictions()
 {
-    int experimentCount = m_data->getExperiments().size();
+    long experimentCount = m_data->getExperiments().size();
     vector<double> meanPredictions;
     meanPredictions.reserve(experimentCount);
 
@@ -159,7 +162,7 @@ vector<double> MLRunner::getMeanTrainingPredictions()
 
 vector<double> MLRunner::getCrossValidationPredictions()
 {
-    int experimentCount = m_data->getExperiments().size();
+    int experimentCount = (int) m_data->getExperiments().size();
     vector<double> predictions(experimentCount);
     
     int foldIndex = -1;

@@ -2,6 +2,8 @@
 #define __VLC_MESSAGE_H__
 
 #include <iostream>
+#include <boost/lexical_cast.hpp>
+using boost::lexical_cast;
 using std::cout;
 using std::endl;
 

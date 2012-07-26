@@ -8,18 +8,23 @@
 #include "MachineLearning/RandomForest/RandomForestOutput.h"
 #include "MachineLearning/MLUtils.h"
 
+#include "utils/VlcMessage.h"
+
+#include <boost/make_shared.hpp>
+using boost::make_shared;
+
 RandomForestEstimator::RandomForestEstimator(MLData* data, 
                                              vector<shared_ptr<MLExperiment> > experiments, 
                                              shared_ptr<RandomForestParameters> parameters)
                                              : MLEstimator(data, experiments), m_parameters(parameters)
 {
     m_decisionTreeExperiments.reserve(experiments.size());
-    BOOST_FOREACH(auto& experiment, experiments)
+    BOOST_FOREACH(shared_ptr<MLExperiment>& experiment, experiments)
         m_decisionTreeExperiments.push_back(make_shared<DecisionTreeExperiment>(experiment));
 
     vector<int> experimentIndicies;
     experimentIndicies.reserve(experiments.size());
-    BOOST_FOREACH(auto& experiment, experiments)
+    BOOST_FOREACH(shared_ptr<MLExperiment>& experiment, experiments)
         experimentIndicies.push_back(experiment->getExperimentIndex());
 
     m_output = shared_ptr<RandomForestOutput>(new RandomForestOutput(m_data, experimentIndicies, m_parameters));
@@ -38,7 +43,7 @@ shared_ptr<MLOutput> RandomForestEstimator::estimate()
     for (int iteration = 0; iteration < m_parameters->numIterations; ++iteration)
     {
         if (m_parameters->verbose)
-            vlcMessage.Begin((string("Iteration ") + ToString(iteration + 1)).c_str());
+            vlcMessage.Begin((string("Iteration ") + boost::lexical_cast<string>(iteration + 1)).c_str());
 
         performIteration();
 
@@ -57,7 +62,7 @@ shared_ptr<MLOutput> RandomForestEstimator::estimateMore(int numTrees)
     for (int iteration = 0; iteration < numTrees; ++iteration)
     {
         if (m_parameters->verbose)
-            vlcMessage.Begin((string("Iteration ") + ToString(numberOfExistingTrees + iteration + 1)).c_str());
+            vlcMessage.Begin((string("Iteration ") + boost::lexical_cast<string>(numberOfExistingTrees + iteration + 1)).c_str());
 
         performIteration();
 
@@ -69,21 +74,21 @@ shared_ptr<MLOutput> RandomForestEstimator::estimateMore(int numTrees)
 
 void RandomForestEstimator::updateZ()
 {
-    BOOST_FOREACH(auto& e, m_decisionTreeExperiments)
+    BOOST_FOREACH(shared_ptr<DecisionTreeExperiment> e, m_decisionTreeExperiments)
         e->setZ(e->getY());
 }
 
 void RandomForestEstimator::performIteration()
 {
     vector<shared_ptr<DecisionTreeExperiment> > experiments;
-    int bagSize = m_decisionTreeExperiments.size() * m_parameters->bagFraction;
+    size_t bagSize = m_decisionTreeExperiments.size() * m_parameters->bagFraction;
 
     if (m_parameters->withReplacement)
-        experiments = MLUtils::bagObjectsWithReplacement<shared_ptr<DecisionTreeExperiment> >(m_decisionTreeExperiments, bagSize);
+        experiments = MLUtils::bagObjectsWithReplacement<shared_ptr<DecisionTreeExperiment> >(m_decisionTreeExperiments, (int) bagSize);
     else
     {
         pair<vector<shared_ptr<DecisionTreeExperiment> >,vector<shared_ptr<DecisionTreeExperiment> > > inAndOutOfBag =
-            MLUtils::bagObjectsWithoutReplacement<shared_ptr<DecisionTreeExperiment> >(m_decisionTreeExperiments, min(m_decisionTreeExperiments.size(), bagSize));
+            MLUtils::bagObjectsWithoutReplacement<shared_ptr<DecisionTreeExperiment> >(m_decisionTreeExperiments, (int) std::min(m_decisionTreeExperiments.size(), bagSize));
         experiments = inAndOutOfBag.first;
     }
 
@@ -106,7 +111,7 @@ void RandomForestEstimator::constructDecisionTree(vector<shared_ptr<DecisionTree
 
     // create a head DecisionTreeNode
     double sumZ = 0.0, sumW = 0.0;
-    BOOST_FOREACH(auto& e, experiments)
+    BOOST_FOREACH(shared_ptr<DecisionTreeExperiment>& e, experiments)
     {
         double w = e->getWeight();
         sumW += w;
@@ -120,21 +125,21 @@ void RandomForestEstimator::constructDecisionTree(vector<shared_ptr<DecisionTree
 
     while (!currentGeneration.empty())
     {
-        BOOST_FOREACH(auto& nodeToSplit, currentGeneration)
+        BOOST_FOREACH(shared_ptr<DecisionTreeNode> nodeToSplit, currentGeneration)
         {
             if (nodeToSplit->getSumW() == 0)
                 continue;
 
             // choose M variables to test splitting on
             // find terminal node with best improvement for any of those variables
-            pair<vector<int>,vector<int> > inAndOut = MLUtils::bagObjectsWithoutReplacement<int>(m_featureIndices, min(m_featureIndices.size(), m_parameters->tryMVariables));
+            pair<vector<int>,vector<int> > inAndOut = MLUtils::bagObjectsWithoutReplacement<int>(m_featureIndices, std::min((int)m_featureIndices.size(), m_parameters->tryMVariables));
             vector<int> featuresToConsider = inAndOut.first;
 
             double bestImprovement = 0.0;
             shared_ptr<SplitDefinition> bestSplit;
 
             vector<shared_ptr<DecisionTreeNode> > children = splitter.splitNode(nodeToSplit, featuresToConsider);
-            BOOST_FOREACH(auto& child, children)
+            BOOST_FOREACH(shared_ptr<DecisionTreeNode>& child, children)
             {
                 nextGeneration.push_back(child);
             }
@@ -159,7 +164,7 @@ void RandomForestEstimator::initializeEstimator()
 
 void RandomForestEstimator::constructFeatureIndices()
 {
-    BOOST_FOREACH(auto& feature, m_parameters->featuresToRun)
+    BOOST_FOREACH(string feature, m_parameters->featuresToRun)
     {
         // note that in a given run, we may not "run" with all loaded variables.
         m_featureIndices.push_back(m_data->getFeatureIndex(feature));

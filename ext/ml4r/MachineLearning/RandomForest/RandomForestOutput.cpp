@@ -3,6 +3,11 @@
 #include "MachineLearning/DecisionTree/DecisionTreeNode.h"
 #include "MachineLearning/DecisionTree/DecisionTreeExperiment.h"
 
+#include "utils/VlcMessage.h"
+
+#include <boost/make_shared.hpp>
+using boost::make_shared;
+
 RandomForestOutput::RandomForestOutput( MLData* trainingData, vector<int> trainingExperimentIndicies, shared_ptr<RandomForestParameters> parameters )
     : MLOutput(trainingData, trainingExperimentIndicies), m_parameters(parameters)
 {
@@ -25,7 +30,7 @@ double RandomForestOutput::predictForExperiment( shared_ptr<MLExperiment> experi
     
     double sumPrediction = 0.0;
     int count = 0;
-    BOOST_FOREACH(auto& head, m_headNodes)
+    BOOST_FOREACH(shared_ptr<DecisionTreeNode>& head, m_headNodes)
     {
         shared_ptr<DecisionTreeNode> node = head->getTerminalNodeForExperiment(dtExperiment);
         if (node.get() == 0)
@@ -35,9 +40,9 @@ double RandomForestOutput::predictForExperiment( shared_ptr<MLExperiment> experi
         {
             
             vlcMessage.Write("Zero weight!! WTF!!");
-            vlcMessage.Write("SumZ: "+ ToString(node->getSumZ()));
-            vlcMessage.Write("exp.size() " + ToString(node->getExperiments().size()));
-            vlcMessage.Write("Node is head: " + ToString(node == head));
+            vlcMessage.Write("SumZ: "+ boost::lexical_cast<string>(node->getSumZ()));
+            vlcMessage.Write("exp.size() " + boost::lexical_cast<string>(node->getExperiments().size()));
+            vlcMessage.Write("Node is head: " + boost::lexical_cast<string>(node == head));
         }
 
         if (node->isTerminalNode())
@@ -57,5 +62,5 @@ void RandomForestOutput::addHeadDecisionTreeNode( shared_ptr<DecisionTreeNode> n
 
 int RandomForestOutput::getNumTrees()
 {
-    return m_headNodes.size();
+    return (int) m_headNodes.size();
 }

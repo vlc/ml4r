@@ -1,6 +1,6 @@
 #include "LinearRegression/OLSLinearRegression.h"
-#include "MathUtils.h"
-#include "Utils.h"
+#include "utils/MathUtils.h"
+#include "utils/Utils.h"
 
 #include <iostream>
 #include <boost/numeric/ublas/io.hpp>

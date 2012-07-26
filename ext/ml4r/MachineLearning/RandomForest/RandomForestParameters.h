@@ -2,6 +2,9 @@
 #define RandomForestParameters_h__
 
 #include <vector>
+#include <string>
+#include <limits>
+using std::string;
 using std::vector;
 
 class RandomForestParameters

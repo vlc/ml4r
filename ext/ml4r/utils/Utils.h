@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <map>
 #include <boost/foreach.hpp>
+using std::map;
+using std::vector;
 
 namespace Utils
 {
@@ -19,6 +21,14 @@ namespace Utils
     bool hasElement(const std::map<T,U>& m, T element)
     {
         return m.find(element) != m.end();
+    }
+
+    template<typename T> 
+    int vectorIndex(vector<T>& c, T element)
+    {
+        if (find(c.begin(), c.end(), element) == c.end())
+            return -1;
+        return (int) (find(c.begin(), c.end(), element) - c.begin()); 
     }
 
     template<typename T>
@@ -71,16 +81,8 @@ namespace Utils
         return returnValue;
     }
 
-    vector<int> vectorOfRandomInt(int length)
-    {
-        vector<int> returnValue;
-        returnValue.reserve(length);
-        for (int i = 0; i < length; ++i)
-            returnValue.push_back(rand());
-
-        return returnValue;
-    }
-
+    vector<int> vectorOfRandomInt(int length);
+    
     template<class T, class U>
     vector<T> vectorSortUsingOtherVector(vector<T>& vec, vector<U>& otherVector)
     {
