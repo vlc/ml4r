@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <limits>
 using std::vector;
 using std::string;
 
