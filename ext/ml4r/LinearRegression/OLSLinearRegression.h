@@ -6,8 +6,8 @@
 class OLSLinearRegression : public LinearRegression
 {
 public:
-	OLSLinearRegression();
-	~OLSLinearRegression();
+	  OLSLinearRegression();
+	  ~OLSLinearRegression();
 
     void Execute();
 
