@@ -4,6 +4,11 @@
 #include <vector>
 using std::vector;
 
+#include <string>
+using std::string;
+
+class FunctionOptimiser;
+
 class LogisticRegressionParameters
 {
 public:

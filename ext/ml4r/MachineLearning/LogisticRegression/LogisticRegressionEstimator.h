@@ -15,7 +15,7 @@ class LogisticRegressionParameters;
 class LogisticRegressionEstimator : public MLEstimator
 {
 public:
-	LogisticRegressionEstimator(MLData* data, vector<shared_ptr<MLExperiment>> experiments, shared_ptr<LogisticRegressionParameters> parameters);
+	LogisticRegressionEstimator(MLData* data, vector<shared_ptr<MLExperiment> > experiments, shared_ptr<LogisticRegressionParameters> parameters);
 	~LogisticRegressionEstimator();
 
     shared_ptr<MLOutput> estimate();

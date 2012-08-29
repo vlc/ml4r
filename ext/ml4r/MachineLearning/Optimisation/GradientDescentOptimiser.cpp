@@ -1,6 +1,7 @@
 #include "MachineLearning/Optimisation/GradientDescentOptimiser.h"
 #include "MachineLearning/Optimisation/OptimisationFunction.h"
-#include "OtUtils.h"
+#include "utils/Utils.h"
+#include <limits>
 
 GradientDescentOptimiser::GradientDescentOptimiser()
     : alpha(0.01), maxParameterDelta(0.0001)
@@ -13,7 +14,7 @@ GradientDescentOptimiser::~GradientDescentOptimiser()
 
 }
 
-vector<double> GradientDescentOptimiser::optimise()
+void GradientDescentOptimiser::optimise()
 {
     double maxParameterChange = std::numeric_limits<double>::infinity();    
     vector<double> parameters = m_seedParameterEstimates;
@@ -26,11 +27,11 @@ vector<double> GradientDescentOptimiser::optimise()
         vector<double> firstOrderDerivatives = m_function->getFirstOrderDerivatives();
 
         vector<double> delta = firstOrderDerivatives;
-        OTUtils::operator*=(delta, -alpha);
+        Utils::operator*=(delta, -alpha);
 
-        maxParameterChange = OTUtils::vectorMax(delta);
+        maxParameterChange = Utils::vectorMax(delta);
 
-        OTUtils::operator+=(parameters, delta);
+        Utils::operator+=(parameters, delta);
     }
-    return parameters;
+    m_finalParameterEstimates = parameters;
 }

@@ -6,8 +6,9 @@
 #include "MachineLearning/MLData/MLData.h"
 #include "MachineLearning/MLData/MLDataUtils.h"
 #include "MachineLearning/MLExperiment.h"
+#include "utils/Utils.h"
 
-LogisticRegressionEstimator::LogisticRegressionEstimator( MLData* data, vector<shared_ptr<MLExperiment>> experiments, shared_ptr<LogisticRegressionParameters> parameters )
+LogisticRegressionEstimator::LogisticRegressionEstimator( MLData* data, vector<shared_ptr<MLExperiment> > experiments, shared_ptr<LogisticRegressionParameters> parameters )
     : MLEstimator(data, experiments), m_parameters(parameters)
 {
 
@@ -21,7 +22,7 @@ LogisticRegressionEstimator::~LogisticRegressionEstimator()
 shared_ptr<MLOutput> LogisticRegressionEstimator::estimate()
 {
     vector<int> featureIndicesToRun;
-    BOOST_FOREACH(auto& feature, m_parameters->featuresToRun)
+    BOOST_FOREACH(string& feature, m_parameters->featuresToRun)
         featureIndicesToRun.push_back(m_data->getFeatureIndex(feature));
 
     vector<int> featuresIndicesToEstimate = MLDataUtils::findValidFeaturesForRegression(m_trainingExperiments, featureIndicesToRun);
@@ -36,8 +37,8 @@ shared_ptr<MLOutput> LogisticRegressionEstimator::estimate()
         seedParameterEstimates = userSeedParameterEstimates;
     else
     {
-        BOOST_FOREACH(auto& featureIndex, featuresIndicesToEstimate)
-            seedParameterEstimates.push_back(userSeedParameterEstimates.at(OTUtils::vectorIndex(featureIndicesToRun, featureIndex)));
+        BOOST_FOREACH(int& featureIndex, featuresIndicesToEstimate)
+            seedParameterEstimates.push_back(userSeedParameterEstimates.at(Utils::vectorIndex(featureIndicesToRun, featureIndex)));
     }
 
         
@@ -45,7 +46,7 @@ shared_ptr<MLOutput> LogisticRegressionEstimator::estimate()
     // remove variables as required
     FunctionOptimiser* functionOptimiser = m_parameters->functionOptimiser;
     
-    functionOptimiser->setFunction(shared_ptr<OptimisationFunction>(new LogisticRegressionOptimisationFunction()));
+    functionOptimiser->setFunction(shared_ptr<OptimisationFunction>(new LogisticRegressionOptimisationFunction(m_trainingExperiments, featuresIndicesToEstimate)));
     functionOptimiser->setSeedParameterEstimates(seedParameterEstimates);
 
     functionOptimiser->optimise();
@@ -54,7 +55,7 @@ shared_ptr<MLOutput> LogisticRegressionEstimator::estimate()
 
     vector<int> experimentIndicies;
     experimentIndicies.reserve(m_trainingExperiments.size());
-    BOOST_FOREACH(auto& experiment, m_trainingExperiments)
+    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_trainingExperiments)
         experimentIndicies.push_back(experiment->getExperimentIndex());
 
     shared_ptr<LogisticRegressionOutput> output = shared_ptr<LogisticRegressionOutput>(new LogisticRegressionOutput(m_data, experimentIndicies, m_parameters));

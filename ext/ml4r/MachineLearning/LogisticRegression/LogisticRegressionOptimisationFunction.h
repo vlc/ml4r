@@ -21,8 +21,8 @@ public:
     vector<double>  getFirstOrderDerivatives();
 
 protected:
-	vector<shared_ptr<MLExperiment>> m_trainingExperiments;
-    vector<int>                      m_featureIndices;
+	vector<shared_ptr<MLExperiment> > m_trainingExperiments;
+    vector<int>                     m_featureIndices;
 private:
 
 };

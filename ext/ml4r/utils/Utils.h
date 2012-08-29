@@ -143,6 +143,40 @@ namespace Utils
             vec.at(i) += offset;
         return vec;
     }
+
+    template <class T> 
+    std::vector<T>& operator*=(vector<T>& vec, const float factor)
+    {
+        BOOST_FOREACH(T& t, vec) t *= factor;
+        return vec;
+    }
+
+    template<class T>
+    T vectorMax(vector<T>& vec)
+    {
+        // setup the initial value to test against
+        T currentMax = (vec.size() > 0) ? vec.at(0) : 0; 
+
+        for (int i = 0; i < vec.size(); ++i)
+            if (vec[i] > currentMax)
+                currentMax = vec[i];
+        return currentMax; 
+    }
+
+    template<class T>
+    int vectorMaxIndex(vector<T>& vec)
+    {
+        if (vec.size() == 0) return -1;  //? vec.at(0) : 0;  
+        T currentMax = vec[0];
+        int currentMaxIndex = 0; 
+        for (unsigned int index = 1; index < vec.size(); ++index)
+        {
+            if (vec[index] <= currentMax) continue; 
+            currentMax      = vec[index]; 
+            currentMaxIndex = index; 
+        }
+        return currentMaxIndex; 
+    }
 };
 
 #endif 

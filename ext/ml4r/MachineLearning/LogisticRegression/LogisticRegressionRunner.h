@@ -19,7 +19,7 @@ public:
 	LogisticRegressionRunner();
 	~LogisticRegressionRunner();
 
-    shared_ptr<MLEstimator> createEstimator(MLData* data, vector<shared_ptr<MLExperiment>> trainingExperiments);
+    shared_ptr<MLEstimator> createEstimator(MLData* data, vector<shared_ptr<MLExperiment> > trainingExperiments);
 
     shared_ptr<LogisticRegressionParameters> parameters;
 protected:

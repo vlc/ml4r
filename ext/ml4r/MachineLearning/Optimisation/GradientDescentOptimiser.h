@@ -14,7 +14,7 @@ public:
 	GradientDescentOptimiser();
 	~GradientDescentOptimiser();
 
-    vector<double> optimise();
+    void optimise();
 protected:
 
     double alpha;

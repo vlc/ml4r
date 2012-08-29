@@ -1,5 +1,6 @@
 #include "MachineLearning/LogisticRegression/LogisticRegressionOutput.h"
 #include "MachineLearning/MLExperiment.h"
+#include <math.h>
 
 LogisticRegressionOutput::LogisticRegressionOutput( MLData* data, vector<int> trainingExperimentIndicies, shared_ptr<LogisticRegressionParameters> parameters )
     : MLOutput(data, trainingExperimentIndicies), m_parameters(parameters)
@@ -15,7 +16,7 @@ LogisticRegressionOutput::~LogisticRegressionOutput()
 double LogisticRegressionOutput::calculateAveragePredictions( vector<double> predictions )
 {
     double sumUtility = 0.0;
-    BOOST_FOREACH(auto& probability, predictions)
+    BOOST_FOREACH(double probability, predictions)
         sumUtility += log(probability / (1.0 - probability));
 
     double meanUtility = sumUtility / predictions.size();
@@ -26,7 +27,7 @@ double LogisticRegressionOutput::predictForExperiment( shared_ptr<MLExperiment> 
 {
     double utility = 0.0;
     double parameterIndex = -1;
-    BOOST_FOREACH(auto& featureIndex, featureIndices)
+    BOOST_FOREACH(int featureIndex, featureIndices)
     {
         ++parameterIndex;
         utility += parameterEstimates.at(parameterIndex) * experiment->getFeatureValue(featureIndex);

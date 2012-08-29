@@ -3,6 +3,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
+
 using std::vector;
 using boost::shared_ptr;
 
