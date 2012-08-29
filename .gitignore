@@ -2,6 +2,7 @@
 *_wrap.c*
 *.bundle
 *.so
+*.suo
 *.gem
 Makefile
 .DS_Store

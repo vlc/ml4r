@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\LinearRegression">
+      <UniqueIdentifier>{e767d233-91e2-4579-bb0f-4eb07db1a13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning">
+      <UniqueIdentifier>{c826dd6d-555b-4122-9cad-6b707b909f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\GBM">
+      <UniqueIdentifier>{577b4b85-06f4-4f7b-af6a-ff62511eb627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\RandomForest">
+      <UniqueIdentifier>{49085c4c-31ad-4da5-bcc8-b309cf5c8810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\DecisionTree">
+      <UniqueIdentifier>{64d35d27-0610-4d8d-9a11-f1fee2f8ce08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\MLData">
+      <UniqueIdentifier>{61e147a9-8f87-46cc-8957-4f8157ec8de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\LogisticRegression">
+      <UniqueIdentifier>{3849ee78-c101-440a-bda8-62cf8253c878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MachineLearning\Optimisation">
+      <UniqueIdentifier>{7a175fc4-757f-4da7-8331-30eb453d4145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{b068e01e-8683-4a1b-affe-c1db0a1121f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LinearRegression">
+      <UniqueIdentifier>{28bf1e2c-987f-403b-8325-4e1ed03e928e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning">
+      <UniqueIdentifier>{62b9aa80-d5ef-4913-833d-0aa094256e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{8f552269-7f72-4385-b4ff-d6fe09131734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\GBM">
+      <UniqueIdentifier>{904431c9-8cdf-4c22-a348-6f9cf8847686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\RandomForest">
+      <UniqueIdentifier>{adf2860b-37f5-455d-9c60-f061f66414c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\LogisticRegression">
+      <UniqueIdentifier>{07e67fc4-aca5-475d-8008-ba2cbc13718f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\Optimisation">
+      <UniqueIdentifier>{df88c5d2-c6b8-49b8-9765-3b4261e69d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\MLData">
+      <UniqueIdentifier>{130f415f-d67a-414f-83b0-f636100b01d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning\DecisionTree">
+      <UniqueIdentifier>{1b3ea78e-1938-4537-8de8-a9c16a75f5b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ml4r.i">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\stl_structures.i">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\LinearRegression\LinearRegression.i">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\ml4r_wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ml4r.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\GBM\BernoulliCalculator.cpp">
+      <Filter>Source Files\MachineLearning\GBM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\DecisionTreeExperiment.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\DecisionTreeNode.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\GBM\GaussianCalculator.cpp">
+      <Filter>Source Files\MachineLearning\GBM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMEstimator.cpp">
+      <Filter>Source Files\MachineLearning\GBM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMOutput.cpp">
+      <Filter>Source Files\MachineLearning\GBM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMRunner.cpp">
+      <Filter>Source Files\MachineLearning\GBM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\Optimisation\GradientDescentOptimiser.cpp">
+      <Filter>Source Files\MachineLearning\Optimisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LinearRegression\LinearRegression.cpp">
+      <Filter>Source Files\LinearRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionEstimator.cpp">
+      <Filter>Source Files\MachineLearning\LogisticRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOptimisationFunction.cpp">
+      <Filter>Source Files\MachineLearning\LogisticRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOutput.cpp">
+      <Filter>Source Files\MachineLearning\LogisticRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.cpp">
+      <Filter>Source Files\MachineLearning\LogisticRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\utils\MathUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLData\MLData.cpp">
+      <Filter>Source Files\MachineLearning\MLData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataFields.cpp">
+      <Filter>Source Files\MachineLearning\MLData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataReader.cpp">
+      <Filter>Source Files\MachineLearning\MLData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLExperiment.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLRunner.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLUtils.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitter.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitterCategorical.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitterContinuous.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LinearRegression\OLSLinearRegression.cpp">
+      <Filter>Source Files\LinearRegression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestEstimator.cpp">
+      <Filter>Source Files\MachineLearning\RandomForest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestOutput.cpp">
+      <Filter>Source Files\MachineLearning\RandomForest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestRunner.cpp">
+      <Filter>Source Files\MachineLearning\RandomForest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\SplitDefinition.cpp">
+      <Filter>Source Files\MachineLearning\DecisionTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\utils\StochasticUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\utils\Utils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\utils\VlcMessage.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\MachineLearning\GBM\BernoulliCalculator.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\CategoryInfo.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\DecisionTreeExperiment.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\DecisionTreeNode.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\FeatureInteraction.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\Optimisation\FunctionOptimiser.h">
+      <Filter>Header Files\MachineLearning\Optimisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GaussianCalculator.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBM.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMCalculator.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMData.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMEstimator.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMOutput.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMParameters.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMRunner.h">
+      <Filter>Header Files\MachineLearning\GBM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\Optimisation\GradientDescentOptimiser.h">
+      <Filter>Header Files\MachineLearning\Optimisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LinearRegression\LinearRegression.h">
+      <Filter>Header Files\LinearRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionEstimator.h">
+      <Filter>Header Files\MachineLearning\LogisticRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOptimisationFunction.h">
+      <Filter>Header Files\MachineLearning\LogisticRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOutput.h">
+      <Filter>Header Files\MachineLearning\LogisticRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionParameters.h">
+      <Filter>Header Files\MachineLearning\LogisticRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.h">
+      <Filter>Header Files\MachineLearning\LogisticRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\utils\MathUtils.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\utils\MatrixInversion.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLData\MLData.h">
+      <Filter>Header Files\MachineLearning\MLData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataFields.h">
+      <Filter>Header Files\MachineLearning\MLData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataReader.h">
+      <Filter>Header Files\MachineLearning\MLData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataUtils.h">
+      <Filter>Header Files\MachineLearning\MLData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLEstimator.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLEstimatorFactory.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLExperiment.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLOutput.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLParameters.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLRunner.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\MLUtils.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitter.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitterCategorical.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitterContinuous.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LinearRegression\OLSLinearRegression.h">
+      <Filter>Header Files\LinearRegression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\Optimisation\OptimisationFunction.h">
+      <Filter>Header Files\MachineLearning\Optimisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestEstimator.h">
+      <Filter>Header Files\MachineLearning\RandomForest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestOutput.h">
+      <Filter>Header Files\MachineLearning\RandomForest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestParameters.h">
+      <Filter>Header Files\MachineLearning\RandomForest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestRunner.h">
+      <Filter>Header Files\MachineLearning\RandomForest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\SplitDefinition.h">
+      <Filter>Header Files\MachineLearning\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\utils\StochasticUtils.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\utils\Utils.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\utils\VlcMessage.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{43D54CA2-E8BA-40D4-993F-25720F52ABE6}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>ml4r.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>ml4r.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\LinearRegression\LinearRegression.i" />
+    <None Include="..\..\ml4r.i" />
+    <None Include="..\..\stl_structures.i" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\LinearRegression\LinearRegression.cpp" />
+    <ClCompile Include="..\..\LinearRegression\OLSLinearRegression.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\DecisionTreeExperiment.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\DecisionTreeNode.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitter.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitterCategorical.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\NodeSplitterContinuous.cpp" />
+    <ClCompile Include="..\..\MachineLearning\DecisionTree\SplitDefinition.cpp" />
+    <ClCompile Include="..\..\MachineLearning\GBM\BernoulliCalculator.cpp" />
+    <ClCompile Include="..\..\MachineLearning\GBM\GaussianCalculator.cpp" />
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMEstimator.cpp" />
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMOutput.cpp" />
+    <ClCompile Include="..\..\MachineLearning\GBM\GBMRunner.cpp" />
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionEstimator.cpp" />
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOptimisationFunction.cpp" />
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOutput.cpp" />
+    <ClCompile Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLData\MLData.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataFields.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataReader.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLExperiment.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLRunner.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLUtils.cpp" />
+    <ClCompile Include="..\..\MachineLearning\Optimisation\GradientDescentOptimiser.cpp" />
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestEstimator.cpp" />
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestOutput.cpp" />
+    <ClCompile Include="..\..\MachineLearning\RandomForest\RandomForestRunner.cpp" />
+    <ClCompile Include="..\..\ml4r.cpp" />
+    <ClCompile Include="..\..\ml4r_wrap.cpp" />
+    <ClCompile Include="..\..\utils\MathUtils.cpp" />
+    <ClCompile Include="..\..\utils\StochasticUtils.cpp" />
+    <ClCompile Include="..\..\utils\Utils.cpp" />
+    <ClCompile Include="..\..\utils\VlcMessage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\LinearRegression\LinearRegression.h" />
+    <ClInclude Include="..\..\LinearRegression\OLSLinearRegression.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\CategoryInfo.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\DecisionTreeExperiment.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\DecisionTreeNode.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\FeatureInteraction.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitter.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitterCategorical.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\NodeSplitterContinuous.h" />
+    <ClInclude Include="..\..\MachineLearning\DecisionTree\SplitDefinition.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\BernoulliCalculator.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GaussianCalculator.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBM.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMCalculator.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMData.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMEstimator.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMOutput.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMParameters.h" />
+    <ClInclude Include="..\..\MachineLearning\GBM\GBMRunner.h" />
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionEstimator.h" />
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOptimisationFunction.h" />
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionOutput.h" />
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionParameters.h" />
+    <ClInclude Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.h" />
+    <ClInclude Include="..\..\MachineLearning\MLData\MLData.h" />
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataFields.h" />
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataReader.h" />
+    <ClInclude Include="..\..\MachineLearning\MLData\MLDataUtils.h" />
+    <ClInclude Include="..\..\MachineLearning\MLEstimator.h" />
+    <ClInclude Include="..\..\MachineLearning\MLEstimatorFactory.h" />
+    <ClInclude Include="..\..\MachineLearning\MLExperiment.h" />
+    <ClInclude Include="..\..\MachineLearning\MLOutput.h" />
+    <ClInclude Include="..\..\MachineLearning\MLParameters.h" />
+    <ClInclude Include="..\..\MachineLearning\MLRunner.h" />
+    <ClInclude Include="..\..\MachineLearning\MLUtils.h" />
+    <ClInclude Include="..\..\MachineLearning\Optimisation\FunctionOptimiser.h" />
+    <ClInclude Include="..\..\MachineLearning\Optimisation\GradientDescentOptimiser.h" />
+    <ClInclude Include="..\..\MachineLearning\Optimisation\OptimisationFunction.h" />
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestEstimator.h" />
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestOutput.h" />
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestParameters.h" />
+    <ClInclude Include="..\..\MachineLearning\RandomForest\RandomForestRunner.h" />
+    <ClInclude Include="..\..\utils\MathUtils.h" />
+    <ClInclude Include="..\..\utils\MatrixInversion.h" />
+    <ClInclude Include="..\..\utils\StochasticUtils.h" />
+    <ClInclude Include="..\..\utils\Utils.h" />
+    <ClInclude Include="..\..\utils\VlcMessage.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
