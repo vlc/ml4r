@@ -179,6 +179,9 @@
     <ClCompile Include="..\..\utils\VlcMessage.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataUtils.cpp">
+      <Filter>Source Files\MachineLearning\MLData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\MachineLearning\GBM\BernoulliCalculator.h">

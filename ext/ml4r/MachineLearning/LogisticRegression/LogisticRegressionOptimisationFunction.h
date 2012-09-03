@@ -4,16 +4,23 @@
 #include "MachineLearning/Optimisation/OptimisationFunction.h"
 
 #include <boost/shared_ptr.hpp>
+using boost::shared_ptr;
+
 #include <vector>
 using std::vector;
-using boost::shared_ptr;
+
+#include <../Eigen/Dense>
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
+using Eigen::RowVectorXd;
+using Eigen::ArrayXd;
 
 class MLExperiment;
 
 class LogisticRegressionOptimisationFunction : public OptimisationFunction
 {
 public:
-	LogisticRegressionOptimisationFunction(vector<shared_ptr<MLExperiment> > trainingExperiments, vector<int> featureIndices);
+	LogisticRegressionOptimisationFunction(vector<shared_ptr<MLExperiment> > trainingExperiments, vector<int> featureIndices, double regularisationParameter);
 	~LogisticRegressionOptimisationFunction();
 
     void            updateUsingParameters(vector<double> parameters);
@@ -22,7 +29,13 @@ public:
 
 protected:
 	vector<shared_ptr<MLExperiment> > m_trainingExperiments;
-    vector<int>                     m_featureIndices;
+    MatrixXd                          m_trainingDataMatrix;
+    VectorXd                          m_trainingResponseVector;
+    vector<int>                       m_featureIndices;
+    double                            m_regularisationParameter;
+    double                            m_costFunction;
+    vector<double>                    m_derivatives;
+
 private:
 
 };

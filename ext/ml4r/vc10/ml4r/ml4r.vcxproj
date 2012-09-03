@@ -36,6 +36,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>ml4r.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;\\gordon.vlc\ml4r\ext\ml4r;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>ml4r.exe</NMakeOutput>
@@ -69,6 +70,7 @@
     <ClCompile Include="..\..\MachineLearning\MLData\MLData.cpp" />
     <ClCompile Include="..\..\MachineLearning\MLData\MLDataFields.cpp" />
     <ClCompile Include="..\..\MachineLearning\MLData\MLDataReader.cpp" />
+    <ClCompile Include="..\..\MachineLearning\MLData\MLDataUtils.cpp" />
     <ClCompile Include="..\..\MachineLearning\MLExperiment.cpp" />
     <ClCompile Include="..\..\MachineLearning\MLRunner.cpp" />
     <ClCompile Include="..\..\MachineLearning\MLUtils.cpp" />
