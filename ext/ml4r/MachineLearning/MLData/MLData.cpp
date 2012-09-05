@@ -39,12 +39,12 @@ void MLData::setExperiments(vector<shared_ptr<MLExperiment> > experiments)
     createFolds(1, 0);
 }
 
-vector<string>& MLData::getFeatures()
+vector<string> MLData::getFeatureNames()
 {
     return m_featureNames;
 }
 
-void MLData::setFeatures(vector<string> features)
+void MLData::setFeatureNames(vector<string> features)
 {
     m_featureNames = features;
     int index = -1;
@@ -184,21 +184,6 @@ double MLData::getMissingValue()
     return m_missingValue;
 }
 
-void MLData::setInitialPredictions( vector<double> initialPredictions )
-{
-    if (m_experiments.size() != initialPredictions.size())
-        throw std::runtime_error("Initial predictions are not of the same length as experiments. " +
-                                 lexical_cast<string>(initialPredictions.size()) + " versus " + lexical_cast<string>(m_experiments.size()));
-
-    int index = -1;
-    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_experiments)
-    {
-        ++index;
-        experiment->setPrediction(initialPredictions.at(index));
-    }
-    m_initialPredictionsDefined = true;
-}
-
 shared_ptr<MLExperiment> MLData::getExperiment( int experimentIndex )
 {
     return m_experiments.at(experimentIndex);
@@ -225,6 +210,119 @@ vector<int> MLData::getFolds()
         }
     }
     return folds;
+}
+
+void MLData::setXs( vector<vector<double> > xs )
+{
+    if (m_experiments.size() != 0 && m_experiments.size() != xs.size())
+        throw std::runtime_error("[MLData::setXs] - length of xs does not match number of existing records");
+
+    if (m_experiments.size() == 0)
+        createEmptyExperiments(xs.size());
+
+    for (int i = 0; i < xs.size(); ++i)
+        m_experiments.at(i)->setFeatureValues(xs.at(i));
+}
+
+void MLData::setYs( vector<double> ys )
+{
+    if (m_experiments.size() != 0 && m_experiments.size() != ys.size())
+        throw std::runtime_error("[MLData::setXs] - length of ys does not match number of existing records");
+
+    if (m_experiments.size() == 0)
+        createEmptyExperiments(ys.size());
+
+    for (int i = 0; i < ys.size(); ++i)
+        m_experiments.at(i)->setY(ys.at(i));
+
+}
+
+void MLData::setWeights( vector<double> ws )
+{
+    if (m_experiments.size() != 0 && m_experiments.size() != ws.size())
+        throw std::runtime_error("[MLData::setWeights] - length of weights does not match number of existing records");
+
+    if (m_experiments.size() == 0)
+        createEmptyExperiments(ws.size());
+
+    for (int i = 0; i < ws.size(); ++i)
+        m_experiments.at(i)->setWeight(ws.at(i));
+}
+
+void MLData::setInitialPredictions( vector<double> initialPredictions )
+{
+    if (m_experiments.size() != 0 && m_experiments.size() != initialPredictions.size())
+        throw std::runtime_error("[MLData::setInitialPredictions] - Initial predictions are not of the same length as existing records. " +
+        lexical_cast<string>(initialPredictions.size()) + " versus " + lexical_cast<string>(m_experiments.size()));
+
+    if (m_experiments.size() == 0)
+        createEmptyExperiments(initialPredictions.size());
+
+    for (int i = 0; i < initialPredictions.size(); ++i)
+        m_experiments.at(i)->setPrediction(initialPredictions.at(i));
+
+    m_initialPredictionsDefined = true;
+}
+
+void MLData::createEmptyExperiments( int size )
+{
+    m_experiments.clear();
+    m_experiments.reserve(size);
+
+    for (int i = 0; i < size; ++i)
+        m_experiments.push_back(shared_ptr<MLExperiment>(new MLExperiment()));
+}
+
+std::vector<std::vector<double> > MLData::getXs()
+{
+    vector<vector<double> > returnValue(m_experiments.size());
+
+    int index = -1;
+    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_experiments)
+    {
+        ++index;
+        returnValue.at(index) = experiment->getFeatureValues();
+    }
+    return returnValue;
+}
+
+std::vector<double> MLData::getYs()
+{
+    vector<double> returnValue(m_experiments.size());
+
+    int index = -1;
+    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_experiments)
+    {
+        ++index;
+        returnValue.at(index) = experiment->getY();
+    }
+    return returnValue;
+}
+
+std::vector<double> MLData::getWeights()
+{
+    vector<double> returnValue(m_experiments.size());
+
+    int index = -1;
+    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_experiments)
+    {
+        ++index;
+        returnValue.at(index) = experiment->getWeight();
+    }
+    return returnValue;
+}
+
+std::vector<double> MLData::getPredictions()
+{
+    vector<double> returnValue(m_experiments.size());
+
+    int index = -1;
+    BOOST_FOREACH(shared_ptr<MLExperiment> experiment, m_experiments)
+    {
+        ++index;
+        returnValue.at(index) = experiment->getPrediction();
+    }
+    return returnValue;
 }
 
 

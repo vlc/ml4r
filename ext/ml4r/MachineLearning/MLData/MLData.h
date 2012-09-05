@@ -22,33 +22,42 @@ public:
     MLData();
     ~MLData();
 
-    void setExperiments(vector<shared_ptr<MLExperiment> > experiments);
-    vector<shared_ptr<MLExperiment> >& getExperiments();
+    void setXs(std::vector<std::vector<double> > xs);
+    void setYs(std::vector<double> ys);
+    void setWeights(std::vector<double> ws);
+
+    std::vector<std::vector<double> >   getXs();
+    std::vector<double>                 getYs();
+    std::vector<double>                 getWeights();
+    std::vector<double>                 getPredictions();
+
+    void setExperiments(std::vector<shared_ptr<MLExperiment> > experiments);
+    std::vector<shared_ptr<MLExperiment> >& getExperiments();
     shared_ptr<MLExperiment> getExperiment(int experimentIndex);
     
     void createFolds(int numFolds, int randomSeed);
-    void setFolds(vector<int> folds);
+    void setFolds(std::vector<int> folds);
         
-    void setTrainingExperimentIds(vector<int>& experimentIds);
-    void setTrainingExperiments(vector<shared_ptr<MLExperiment> > experiments);
+    void setTrainingExperimentIds(std::vector<int>& experimentIds);
+    void setTrainingExperiments(std::vector<shared_ptr<MLExperiment> > experiments);
 
-    vector<int>& getFoldNumbers();
-    vector<int>  getFolds();
+    std::vector<int>& getFoldNumbers();
+    std::vector<int>  getFolds();
 
-    vector<shared_ptr<MLExperiment> >& getTrainingExperiments(int fold);
-    vector<shared_ptr<MLExperiment> >& getCrossValidationExperiments(int fold);
+    std::vector<shared_ptr<MLExperiment> >& getTrainingExperiments(int fold);
+    std::vector<shared_ptr<MLExperiment> >& getCrossValidationExperiments(int fold);
 
     shared_ptr<MLExperiment> getExperimentWithId(int experimentId);
     // vector<shared_ptr<MLExperiment> >& getExperimentsSortedOnFeature(int featureIndex);
     
-    vector<string>& getFeatures();
-    void  setFeatures(vector<string> features);
-    int   getFeatureIndex(string& feature);
+    std::vector<std::string> getFeatureNames();
+    void  setFeatureNames(std::vector<std::string> features);
+    int   getFeatureIndex(std::string& feature);
 
-    void        constructCategories(vector<string> categoricalFeatures);
+    void        constructCategories(std::vector<std::string> categoricalFeatures);
     set<int>&   getCategoricalFeatureIndices();
     
-    void setInitialPredictions(vector<double> initialPredictions);
+    void setInitialPredictions(std::vector<double> initialPredictions);
     void setInitialPredictionsDefined(bool defined);
     bool initialPredictionsDefined();
 
@@ -58,6 +67,7 @@ public:
     bool missingValueDefined();
     double getMissingValue();
 protected:
+    void createEmptyExperiments(int size);
 
     vector<shared_ptr<MLExperiment> > m_experiments;
     map<int, vector<shared_ptr<MLExperiment> > > m_trainingExperiments;

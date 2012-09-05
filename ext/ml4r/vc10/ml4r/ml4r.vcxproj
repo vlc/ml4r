@@ -46,6 +46,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\LinearRegression\LinearRegression.i" />
+    <None Include="..\..\MachineLearning\MLData\MLData.i" />
     <None Include="..\..\ml4r.i" />
     <None Include="..\..\stl_structures.i" />
   </ItemGroup>

@@ -41,7 +41,7 @@ GBMRunner::~GBMRunner()
 void GBMRunner::config()
 {
     
-    vector<string>& dataFeatures = m_data->getFeatures();
+    vector<string> dataFeatures = m_data->getFeatureNames();
 
     // parameters->loadedFeatures = dataFeatures;
     if (parameters->featuresToRun.empty())

@@ -26,8 +26,12 @@ public:
     double          getWeight();
     vector<double>& getFeatureValues();
     double          getFeatureValue(int featureIndex);
-    void            setPrediction(double prediction);
     
+    void            setPrediction(double prediction);
+    void            setWeight(double weight);
+    void            setY(double y);
+    void            setFeatureValues(vector<double> featureValues);
+
 protected:
     double m_yValue;
     int m_experimentId;

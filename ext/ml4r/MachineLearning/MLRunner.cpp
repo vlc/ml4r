@@ -107,7 +107,7 @@ vector<double> MLRunner::getPredictions( MLData* newData )
     if (m_data->initialPredictionsDefined() && !newData->initialPredictionsDefined())
         throw std::runtime_error("Cannot apply model to new data as initial predictions are not defined (but were in initial data).");
 
-    if (m_data->getFeatures() != newData->getFeatures())
+    if (m_data->getFeatureNames() != newData->getFeatureNames())
         throw std::runtime_error("Features in prediction dataset do not match those in the estimation dataset (order is important)");
 
     return getPredictions(newData->getExperiments());

@@ -57,7 +57,7 @@ void RandomForestRunner::estimateMore(int numTrees)
 
 void RandomForestRunner::config()
 {
-    vector<string>& dataFeatures = m_data->getFeatures();
+    vector<string> dataFeatures = m_data->getFeatureNames();
 
     if (parameters->featuresToRun.empty())
         parameters->featuresToRun = dataFeatures;

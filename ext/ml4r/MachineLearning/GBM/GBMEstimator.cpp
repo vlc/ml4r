@@ -247,7 +247,7 @@ void GBMEstimator::constructDecisionTree(vector<shared_ptr<DecisionTreeExperimen
         if (m_parameters->verbose)
         {
             vlcMessage.Write("Level " + lexical_cast<string>(k+1) + ": Split on feature " 
-                + m_data->getFeatures().at(featureIndex) + " at "
+                + m_data->getFeatureNames().at(featureIndex) + " at "
                 + lexical_cast<string>(bestSplit->getSplitValue()) + ".  Improvement: "
                 + lexical_cast<string>(bestImprovement));
         }
@@ -528,7 +528,7 @@ vector<FeatureInteraction> GBMEstimator::findInteractions(int howMany)
     singleFeature.push_back(0);
 
     vlcMessage.Write("Creating top level splits");
-    vector<string>& featureNames = m_data->getFeatures();
+    vector<string> featureNames = m_data->getFeatureNames();
     BOOST_FOREACH(int& featureIndex, m_featureIndices)
     {
         vlcMessage.Write("Top level " + lexical_cast<string>(featureIndex));

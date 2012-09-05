@@ -94,7 +94,7 @@ void MLDataReader::execute(MLData* mlData)
 
     // finally, set up our MLData object
     mlData->setExperiments(experiments);
-    mlData->setFeatures(featuresToLoad);
+    mlData->setFeatureNames(featuresToLoad);
     mlData->constructCategories(categoricalFeatures);
     mlData->setInitialPredictionsDefined(initialPredictionsIndex != -1);
 

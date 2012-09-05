@@ -67,3 +67,18 @@ void MLExperiment::setPrediction(double prediction)
 {
     m_prediction = prediction;
 }
+
+void MLExperiment::setWeight( double weight )
+{
+    m_weight = weight;
+}
+
+void MLExperiment::setY( double y )
+{
+    m_yValue = y;
+}
+
+void MLExperiment::setFeatureValues( vector<double> featureValues )
+{
+    m_features = featureValues;
+}
