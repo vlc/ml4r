@@ -11,13 +11,14 @@ using std::pair;
 class LinearRegression
 {
 public:
-	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys)
-	: m_xs(xs), m_ys(ys), m_constantIsFixed(false), m_paramsAreValid(false) {}
+	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+	                 std::vector<double> weights = std::vector<double>())
+	: m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false) {}
 	~LinearRegression() {}
 
     // void setXs();
     // void setYs(std::vector<double> ys);
-    void setWeights(std::vector<double> weights);
+    //void setWeights(std::vector<double> weights);
     void setFixedConstant(double val);
     
     

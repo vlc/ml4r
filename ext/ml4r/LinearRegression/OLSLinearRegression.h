@@ -6,7 +6,8 @@
 class OLSLinearRegression : public LinearRegression
 {
 public:
-	OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys);
+	OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+	                    std::vector<double> weights = std::vector<double>());
 	~OLSLinearRegression();
 
     void calculate();

@@ -12,8 +12,9 @@ using Utils::operator+=;
 using ublas::matrix;
 using ublas::prod;
 
-OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys)
-: LinearRegression(xs, ys)
+OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+                                         std::vector<double> weights)
+: LinearRegression(xs, ys, weights)
 {
     calculate();
 }
@@ -35,11 +36,6 @@ void OLSLinearRegression::calculate()
     populateMembers();
     EstimateBs();
     if (m_paramsAreValid) calculateStatistics();
-    
-
-//     for (int i = 0; i < bs.size1(); ++i)
-//         vlcMessage.Write(ToString(bs(i, 0)));
-
 }
 
 void OLSLinearRegression::EstimateBs()
