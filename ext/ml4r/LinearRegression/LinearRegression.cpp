@@ -18,15 +18,6 @@ using std::vector;
 using ublas::prod;
 using ublas::matrix;
 
-void LinearRegression::setXs(vector<vector<double> > xs)
-{
-    m_xs = xs;
-}
-
-void LinearRegression::setYs(vector<double> ys)
-{
-    m_ys = ys;
-}
 
 void LinearRegression::setWeights(vector<double> weights)
 {

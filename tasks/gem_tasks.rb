@@ -5,7 +5,7 @@ def increment_gemspec_version
     dat.each { |line|
       if line =~ /s.version     = '(\d+).(\d+).(\d+)'/
         version = "#{$1}.#{$2}.#{$3.to_i+1}"
-        f.puts(  "s.version     = '#{version}'")
+        f.puts(  "  s.version     = '#{version}'")
       else
         f.puts(line)
       end

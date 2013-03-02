@@ -6,10 +6,10 @@
 class OLSLinearRegression : public LinearRegression
 {
 public:
-	OLSLinearRegression();
+	OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys);
 	~OLSLinearRegression();
 
-    void Execute();
+    void calculate();
 
     void EstimateBs();
 

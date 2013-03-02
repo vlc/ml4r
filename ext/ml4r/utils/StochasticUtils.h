@@ -15,7 +15,7 @@ using std::vector;
 
 namespace StochasticUtils
 {
-	vector<float> convertPdfToCumulativeSum(vector<float> pdf);
+	vector<double> convertPdfToCumulativeSum(std::vector<double> pdf);
     vector<float> convertHistogramToPdf(vector<float> histogram);
                         int chooseCategoryFromCdf(float * cumulativeProbabilities, int N);
                         int chooseCategoryFromCdf(vector<float>& cumulativeProbabilities);

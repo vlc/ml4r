@@ -12,13 +12,16 @@ using Utils::operator+=;
 using ublas::matrix;
 using ublas::prod;
 
-OLSLinearRegression::OLSLinearRegression()
-{}
+OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys)
+: LinearRegression(xs, ys)
+{
+    calculate();
+}
 
 OLSLinearRegression::~OLSLinearRegression()
 {}
 
-void OLSLinearRegression::Execute()
+void OLSLinearRegression::calculate()
 {
     checkDimensions();
     // matrix based implementation

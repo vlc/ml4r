@@ -2,6 +2,8 @@ require 'mkmf'
 
 $libs += " -lstdc++ " # --std=c++0x"
 # $CPPFLAGS += " --std=c++0x"
+CONFIG['warnflags'].gsub!('-Wdeclaration-after-statement',   '')
+CONFIG['warnflags'].gsub!('-Wimplicit-function-declaration', '')
 
 dir_config('boost')
 
