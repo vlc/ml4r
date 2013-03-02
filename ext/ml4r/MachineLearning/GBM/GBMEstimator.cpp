@@ -327,7 +327,7 @@ vector<int> GBMEstimator::getRandomFeatureList()
     while (randomlySelectedFeatures.size() < numberToChoose)
     {
         long r = rand();
-        long index = r * 1.0 / (RAND_MAX + 1) * m_featureIndices.size();
+        long index = r * (1.0 / (RAND_MAX + 1L)) * m_featureIndices.size();
         if (!featureChosen[index] == 1)
         {
             featureChosen[index] = 1;
