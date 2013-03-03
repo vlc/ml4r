@@ -14,7 +14,13 @@ Supports:
 ## Requirements ##
     The entire library is built using SWIG and as such it requires the boost c++ library.
     To install on ubuntu / debian distros
-        sudo apt-get install
+        sudo apt-get install libboost-dev
+
+    To install on Mac OS/X you can use either of the following depending on whether you prefer macports or homebrew
+        sudo port install boost
+         OR
+        sudo brew install boost
+
 
 ## Usage ##
     
