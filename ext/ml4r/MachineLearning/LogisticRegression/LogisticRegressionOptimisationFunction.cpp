@@ -30,7 +30,7 @@ LogisticRegressionOptimisationFunction::~LogisticRegressionOptimisationFunction(
 void LogisticRegressionOptimisationFunction::updateUsingParameters( vector<double> parameters )
 {
     VectorXd parametersVector(parameters.size());
-    for (int i = 0; i < parameters.size(); ++i)
+    for (unsigned int i = 0; i < parameters.size(); ++i)
         parametersVector(i) = parameters.at(i);
 
     // vlcMessage.Write("Parameters: " + lexical_cast<string>(parametersVector));
@@ -63,7 +63,7 @@ void LogisticRegressionOptimisationFunction::updateUsingParameters( vector<doubl
     // vlcMessage.Write("Derivatives: " + lexical_cast<string>(derivative));
 
     m_derivatives.resize(derivative.rows());
-    for (int row = 0; row < m_derivatives.size(); ++row)
+    for (unsigned int row = 0; row < m_derivatives.size(); ++row)
         m_derivatives.at(row) = derivative(row);
 
     // cout << "m_derivatives: " << m_derivatives << endl;

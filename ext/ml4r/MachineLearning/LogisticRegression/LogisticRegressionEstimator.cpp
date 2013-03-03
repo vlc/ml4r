@@ -62,7 +62,7 @@ void LogisticRegressionEstimator::determineValidFeatures()
     m_validFeatureIndices.clear();
     m_seedValuesForValidFeatures.clear();
 
-    for (int i = 0; i < featureIndices.size(); ++i)
+    for (unsigned int i = 0; i < featureIndices.size(); ++i)
     {
         if (removeFeature[featureIndices.at(i)]) continue;
 
@@ -74,7 +74,7 @@ void LogisticRegressionEstimator::determineValidFeatures()
 vector<double> LogisticRegressionEstimator::getFeatureVector( int featureIndex )
 {
     vector<double> featureVector(m_trainingExperiments.size());
-    for (int i = 0; i < m_trainingExperiments.size(); ++i)
+    for (unsigned int i = 0; i < m_trainingExperiments.size(); ++i)
         featureVector.at(i) = m_trainingExperiments.at(i)->getFeatureValue(featureIndex);
 
     return featureVector;

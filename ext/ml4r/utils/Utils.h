@@ -156,7 +156,7 @@ namespace Utils
     {
         // setup the initial value to test against
         T currentMax = (vec.size() > 0) ? vec.at(0) : 0; 
-        for (int i = 0; i < vec.size(); ++i)
+        for (unsigned int i = 0; i < vec.size(); ++i)
             if (vec[i] > currentMax)
                 currentMax = vec[i];
         return currentMax; 
@@ -182,7 +182,7 @@ namespace Utils
     {
         T currentMin = (vec.size() > 0) ? vec.at(0) : 0;  
         
-        for (int i = 0; i < vec.size(); ++i)
+        for (unsigned int i = 0; i < vec.size(); ++i)
         {
             if (vec[i] < currentMin) 
                 currentMin = vec[i];

@@ -21,7 +21,7 @@ end
 file "lib/#{NAME}/#{NAME}.#{EXT}" => Dir.glob("ext/#{NAME}/**/*{.rb,.c,.cpp,.cxx,*.i,*.h}") do
   Dir.chdir("ext/#{NAME}") do
   	# Regenerate the c++ wrappers if the swig interface files have changed
-    p `swig -ruby -c++ ml4r.i` 
+    p `swig -ruby -c++ ml4r.i`
     FileUtils.mv("ml4r_wrap.cxx", "ml4r_wrap.cpp")
   	hack_wrapper_to_include_boost_earlier()
 

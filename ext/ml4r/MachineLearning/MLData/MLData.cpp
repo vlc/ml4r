@@ -223,7 +223,7 @@ void MLData::setInitialPredictions( vector<double> initialPredictions )
         throw std::runtime_error("[MLData::setInitialPredictions] - Initial predictions are not of the same length as existing records. " +
         lexical_cast<string>(initialPredictions.size()) + " versus " + lexical_cast<string>(m_experiments.size()));
 
-    for (int i = 0; i < initialPredictions.size(); ++i)
+    for (unsigned int i = 0; i < initialPredictions.size(); ++i)
         m_experiments.at(i)->setPrediction(initialPredictions.at(i));
 
     m_initialPredictionsDefined = true;
@@ -292,7 +292,7 @@ void MLData::addObservation( vector<double> xs, double y, double weight, double 
     {
         m_featureCount = xs.size();
         vector<string> featureNames;
-        for (int i = 0; i < m_featureCount; ++i) 
+        for (unsigned int i = 0; i < m_featureCount; ++i) 
             featureNames.push_back(string("X") + lexical_cast<string>(i));
         setFeatureNames(featureNames);
     }

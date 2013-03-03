@@ -83,7 +83,7 @@ protected:
     vector<int>                        m_foldNumbers;
     double                             m_missingValue;
     bool                               m_missingValueDefined;
-    int                                 m_featureCount;
+    unsigned int                       m_featureCount;
     // map<int, vector<shared_ptr<MLExperiment> > > m_experimentsSortedByFeature;
 };
 
