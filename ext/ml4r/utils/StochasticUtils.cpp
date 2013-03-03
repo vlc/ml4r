@@ -1,9 +1,9 @@
 #include "utils/StochasticUtils.h"
 
-vector<float> StochasticUtils::convertPdfToCumulativeSum(vector<float> pdf)
+vector<double> StochasticUtils::convertPdfToCumulativeSum(std::vector<double> pdf)
 {
     float cumulativeSum = 0; 
-    vector<float> returnVal(pdf.size());
+    vector<double> returnVal(pdf.size());
     for (unsigned int i=0; i<pdf.size(); ++i)
     {
         returnVal[i] = cumulativeSum + pdf[i];

@@ -8,37 +8,39 @@ using boost::numeric::ublas::matrix;
 #include <utility>
 using std::pair;
 
-//#include "ZenithBase.h"
-//#include "boost/MatrixInverse.h"
-
 class LinearRegression
 {
 public:
-	 LinearRegression() : m_constantIsFixed(false), m_paramsAreValid(false) {}
+	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+	                 std::vector<double> weights = std::vector<double>())
+	: m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false) {}
+
+	LinearRegression(std::vector<double> xs, std::vector<double> ys,
+                     std::vector<double> weights = std::vector<double>())
+    : m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false)
+    {
+        m_xs.resize(xs.size());
+        for (unsigned int i=0; i<xs.size(); ++i) m_xs.at(i).resize(1, xs.at(i));
+    }
+
+	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys, double fixedConstant,
+                     std::vector<double> weights = std::vector<double>())
+    : m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(true), m_constant(fixedConstant), m_paramsAreValid(false) {}
 	~LinearRegression() {}
 
-    void setXs(std::vector<std::vector<double> > xs);
-    void setYs(std::vector<double> ys);
-    void setWeights(std::vector<double> weights);
-    void setFixedConstant(double val);
-    
-    
     pair<std::vector<double>,double>  getParameterEstimates();
     std::vector<double>&              getFittedYs();
     std::vector<double>&              getPredictedYs();
-    // double                       GetConstant();
-    double                       getRSquared();
-    double                       getSSquared();
-    double                       getFstatistic();
+    // double                         GetConstant();
+    double                            getRSquared();
+    double                            getSSquared();
+    double                            getFstatistic();
     std::vector<double>&              getTstatistics();
     std::vector<double>&              getStandardErrors();
-    double                       getPressStatistic();
-    double                       getPresarStatistic();
-    double                       getAdjustedRSquared();
-    double                       getRSquaredPrediction();
-    
-    // BOOM THIS IS THE PROBLEM HERE - CAN'T INSTANTIATE A PURE VIRTUAL CLASS
-    virtual void Execute() = 0;
+    double                            getPressStatistic();
+    double                            getPresarStatistic();
+    double                            getAdjustedRSquared();
+    double                            getRSquaredPrediction();
 
 protected:
 
@@ -75,7 +77,7 @@ protected:
     boost::numeric::ublas::matrix<double>   m_Y;
     boost::numeric::ublas::matrix<double>   m_B; // m_B = prod(m_A, m_Y)
     boost::numeric::ublas::matrix<double>   m_A; // m_A = (X'WX)-1 X'W
-    std::vector<double>     m_h_diagonal; // hat ublas::matrix = XA. This is the diagonal of it.
+    std::vector<double>                     m_h_diagonal; // hat ublas::matrix = XA. This is the diagonal of it.
     boost::numeric::ublas::matrix<double>   m_Xtranspose;
     boost::numeric::ublas::matrix<double>   m_Xtranspose_W;
     boost::numeric::ublas::matrix<double>   m_Xtranspose_W_X;

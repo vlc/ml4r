@@ -12,13 +12,31 @@ using Utils::operator+=;
 using ublas::matrix;
 using ublas::prod;
 
-OLSLinearRegression::OLSLinearRegression()
-{}
+OLSLinearRegression::OLSLinearRegression(std::vector<double> xs, std::vector<double> ys,
+                                         std::vector<double> weights)
+: LinearRegression(xs, ys, weights)
+{
+    calculate();
+}
+
+OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+                                         std::vector<double> weights)
+: LinearRegression(xs, ys, weights)
+{
+    calculate();
+}
+
+OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+                                         double fixedConstant, std::vector<double> weights)
+: LinearRegression(xs, ys, fixedConstant, weights)
+{
+    calculate();
+}
 
 OLSLinearRegression::~OLSLinearRegression()
 {}
 
-void OLSLinearRegression::Execute()
+void OLSLinearRegression::calculate()
 {
     checkDimensions();
     // matrix based implementation
@@ -32,11 +50,6 @@ void OLSLinearRegression::Execute()
     populateMembers();
     EstimateBs();
     if (m_paramsAreValid) calculateStatistics();
-    
-
-//     for (int i = 0; i < bs.size1(); ++i)
-//         vlcMessage.Write(ToString(bs(i, 0)));
-
 }
 
 void OLSLinearRegression::EstimateBs()

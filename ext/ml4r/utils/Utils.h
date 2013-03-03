@@ -10,8 +10,7 @@ using std::vector;
 
 namespace Utils
 {
-
-    template<class Container, class T> 
+    template<class Container, class T>
     bool hasElement(const Container& m, T element)
     {
         return find(m.begin(), m.end(), element) != m.end();

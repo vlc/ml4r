@@ -1,7 +1,11 @@
 require 'mkmf'
 
-$libs += " -lstdc++ " # --std=c++0x"
-# $CPPFLAGS += " --std=c++0x"
+$libs += " -lstdc++ "
+
+# The following spam out the console with hard to read error messages, obscuring any real problems
+CONFIG['warnflags'].gsub!('-Wdeclaration-after-statement',   '')
+CONFIG['warnflags'].gsub!('-Wimplicit-function-declaration', '')
+CONFIG['warnflags'].gsub!('-Wshorten-64-to-32', '')
 
 dir_config('boost')
 
