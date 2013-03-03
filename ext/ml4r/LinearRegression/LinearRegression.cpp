@@ -18,18 +18,6 @@ using std::vector;
 using ublas::prod;
 using ublas::matrix;
 
-
-void LinearRegression::setWeights(vector<double> weights)
-{
-    m_ws = weights;
-}
-
-void LinearRegression::setFixedConstant(double val)
-{
-    m_constant = val;
-    m_constantIsFixed = true;
-}
-
 pair<vector<double>,double> LinearRegression::getParameterEstimates()
 {
     return make_pair(m_bs,m_constant);

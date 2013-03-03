@@ -14,14 +14,20 @@ public:
 	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
 	                 std::vector<double> weights = std::vector<double>())
 	: m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false) {}
+
+	LinearRegression(std::vector<double> xs, std::vector<double> ys,
+                     std::vector<double> weights = std::vector<double>())
+    : m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false)
+    {
+        m_xs.resize(xs.size());
+        for (unsigned int i=0; i<xs.size(); ++i) m_xs.at(i).resize(1, xs.at(i));
+    }
+
+	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys, double fixedConstant,
+                     std::vector<double> weights = std::vector<double>())
+    : m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(true), m_constant(fixedConstant), m_paramsAreValid(false) {}
 	~LinearRegression() {}
 
-    // void setXs();
-    // void setYs(std::vector<double> ys);
-    //void setWeights(std::vector<double> weights);
-    void setFixedConstant(double val);
-    
-    
     pair<std::vector<double>,double>  getParameterEstimates();
     std::vector<double>&              getFittedYs();
     std::vector<double>&              getPredictedYs();
@@ -35,9 +41,6 @@ public:
     double                            getPresarStatistic();
     double                            getAdjustedRSquared();
     double                            getRSquaredPrediction();
-    
-    // BOOM THIS IS THE PROBLEM HERE - CAN'T INSTANTIATE A PURE VIRTUAL CLASS
-    // virtual void Execute() = 0;
 
 protected:
 

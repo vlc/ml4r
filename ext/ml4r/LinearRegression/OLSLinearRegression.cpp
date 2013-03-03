@@ -12,9 +12,23 @@ using Utils::operator+=;
 using ublas::matrix;
 using ublas::prod;
 
+OLSLinearRegression::OLSLinearRegression(std::vector<double> xs, std::vector<double> ys,
+                                         std::vector<double> weights)
+: LinearRegression(xs, ys, weights)
+{
+    calculate();
+}
+
 OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
                                          std::vector<double> weights)
 : LinearRegression(xs, ys, weights)
+{
+    calculate();
+}
+
+OLSLinearRegression::OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+                                         double fixedConstant, std::vector<double> weights)
+: LinearRegression(xs, ys, fixedConstant, weights)
 {
     calculate();
 }
