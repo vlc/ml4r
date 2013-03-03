@@ -21,6 +21,8 @@ Supports:
          OR
         sudo brew install boost
 
+    To install on Windows, you'll have to download and unzip the source yourself (sorry)
+        http://www.boost.org/users/download/#live
 
 ## Usage ##
     
