@@ -11,8 +11,8 @@ using boost::shared_ptr;
 class GradientDescentOptimiser : public FunctionOptimiser
 {
 public:
-	GradientDescentOptimiser();
-	~GradientDescentOptimiser();
+    GradientDescentOptimiser();
+    ~GradientDescentOptimiser();
 
     void optimise();
 protected:

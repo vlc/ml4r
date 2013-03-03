@@ -9,7 +9,7 @@ class TestLinearRegression < Ml4rTestCase
     lr = Ml4r::OLSLinearRegression.new([[1.0],[2.0],[3.0]], [1.0, 2.0, 3.0])
     assert_kind_of(Ml4r::LinearRegression, lr)
 
-  	parameters = lr.getParameterEstimates
+    parameters = lr.getParameterEstimates
     assert_in_delta(1.0, parameters.first.first, DELTA, "Factors")
     assert_in_delta(0.0, parameters.second,      DELTA, "Constant")
 
@@ -43,7 +43,7 @@ class TestLinearRegression < Ml4rTestCase
     assert_in_delta([0.5, 0.5], params.first, DELTA)
   end
 
-  def test_benchmark
+  def t_est_benchmark
     require "linefit"
     require 'benchmark'
     xs = (1..100).map(&:to_f).to_a

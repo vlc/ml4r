@@ -11,8 +11,8 @@ class VlcMessage
 {
 public: 
 
-    VlcMessage() : indentLevel(0) {}
-    ~VlcMessage() {}
+	VlcMessage() : indentLevel(0) {}
+	~VlcMessage() {}
 
 	void Write(std::string message, int level = 0) 
 	{

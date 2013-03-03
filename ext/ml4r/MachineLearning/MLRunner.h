@@ -23,9 +23,9 @@ public:
     void    setData(MLData* data);
     MLData* getData();
 
-    vector<double> getPredictions(MLData* newData);    
-    vector<double> getMeanTrainingPredictions();
-    vector<double> getCrossValidationPredictions();
+    std::vector<double> getPredictions(MLData* newData);    
+    std::vector<double> getMeanTrainingPredictions();
+    std::vector<double> getCrossValidationPredictions();
 
     virtual shared_ptr<MLEstimator> createEstimator(MLData* data, vector<shared_ptr<MLExperiment> > trainingExperiments) = 0;
 
@@ -36,7 +36,7 @@ protected:
     virtual void estimate();
     virtual void output();
 
-    vector<double> getPredictions(vector<shared_ptr<MLExperiment> > experiments);
+    std::vector<double> getPredictions(vector<shared_ptr<MLExperiment> > experiments);
     
     MLData*                         m_data;
     vector<shared_ptr<MLOutput> >    m_outputObjects;

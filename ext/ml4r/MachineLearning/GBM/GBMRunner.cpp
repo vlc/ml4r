@@ -20,7 +20,7 @@
 // #include "tbb/blocked_range.h"
 // #include "tbb/explicit_range.h"
 
-#include <math.h>
+#include <cmath>
 #include <boost/pointer_cast.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/foreach.hpp>

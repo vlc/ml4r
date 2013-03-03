@@ -1,6 +1,7 @@
 #include "MachineLearning/LogisticRegression/LogisticRegressionOutput.h"
 #include "MachineLearning/MLExperiment.h"
-#include <math.h>
+// #include <math.h>
+#include <cmath>
 
 LogisticRegressionOutput::LogisticRegressionOutput( MLData* data, vector<int> trainingExperimentIndicies, shared_ptr<LogisticRegressionParameters> parameters )
     : MLOutput(data, trainingExperimentIndicies), m_parameters(parameters)
@@ -27,10 +28,16 @@ double LogisticRegressionOutput::predictForExperiment( shared_ptr<MLExperiment> 
 {
     double utility = 0.0;
     double parameterIndex = -1;
-    BOOST_FOREACH(int featureIndex, featureIndices)
+    BOOST_FOREACH(int featureIndex, m_featureIndices)
     {
         ++parameterIndex;
-        utility += parameterEstimates.at(parameterIndex) * experiment->getFeatureValue(featureIndex);
+        utility += m_parameterEstimates.at(parameterIndex) * experiment->getFeatureValue(featureIndex);
     }
     return 1.0 / (1.0 + exp(-utility));
+}
+
+void LogisticRegressionOutput::setParameters( vector<int>& featureIndices, vector<double>& parameterEstimates )
+{
+    m_featureIndices     = featureIndices;
+    m_parameterEstimates = parameterEstimates;
 }

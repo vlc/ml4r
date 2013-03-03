@@ -1,7 +1,15 @@
 #include "MachineLearning/LogisticRegression/LogisticRegressionOptimisationFunction.h"
 #include "MachineLearning/MLData/MLDataUtils.h"
 #include <boost/foreach.hpp>
+#include "utils/VlcMessage.h"
+#include "utils/Utils.h"
 
+#include <string>
+using std::string;
+
+#include <boost/lexical_cast.hpp>
+using boost::lexical_cast;
+using namespace std;
 
 LogisticRegressionOptimisationFunction::LogisticRegressionOptimisationFunction( vector<shared_ptr<MLExperiment> > trainingExperiments, vector<int> featureIndices, double regularisationParameter )
     : m_trainingExperiments(trainingExperiments), m_featureIndices(featureIndices),
@@ -9,6 +17,9 @@ LogisticRegressionOptimisationFunction::LogisticRegressionOptimisationFunction( 
 {
     m_trainingDataMatrix     = MLDataUtils::makeMlDataFeatureMatrix(m_trainingExperiments, m_featureIndices);
     m_trainingResponseVector = MLDataUtils::makeMlDataResponseVector(m_trainingExperiments);   
+
+    // vlcMessage.Write(lexical_cast<string>(m_trainingDataMatrix));
+    // vlcMessage.Write(lexical_cast<string>(m_trainingResponseVector));
 }
 
 LogisticRegressionOptimisationFunction::~LogisticRegressionOptimisationFunction()
@@ -21,6 +32,8 @@ void LogisticRegressionOptimisationFunction::updateUsingParameters( vector<doubl
     VectorXd parametersVector(parameters.size());
     for (int i = 0; i < parameters.size(); ++i)
         parametersVector(i) = parameters.at(i);
+
+    // vlcMessage.Write("Parameters: " + lexical_cast<string>(parametersVector));
     
     // probability = 1/(1+exp(-u))  u is calculated using data * parameters
     ArrayXd probabilities = (((m_trainingDataMatrix * parametersVector).array() * -1).exp() + 1).inverse();
@@ -29,6 +42,8 @@ void LogisticRegressionOptimisationFunction::updateUsingParameters( vector<doubl
     // cost function is (-logsum + regularisationTerm) / m
     // where logsum is calculated as sum(log( y * p + (1-y) * (1-p) ) )
     m_costFunction = -((y * probabilities) + ((1.0 - y) * (1.0 - probabilities))).log().sum();
+
+    // vlcMessage.Write("Cost function: " + lexical_cast<string>(m_costFunction));
 
     // add regularisation term
     if (m_regularisationParameter)
@@ -39,15 +54,20 @@ void LogisticRegressionOptimisationFunction::updateUsingParameters( vector<doubl
 
     // derivative is (residuals * X) / m + regularisationParameter * parameters
     ArrayXd     residuals  = probabilities - y;
-    ArrayXd     derivative = (residuals.matrix() * m_trainingDataMatrix).array();
+    ArrayXd     derivative = (residuals.matrix().transpose() * m_trainingDataMatrix).transpose().array();
     if (m_regularisationParameter)
         derivative += m_regularisationParameter * parametersVector.array();
 
     derivative /= m_trainingExperiments.size();
 
-    m_derivatives.resize(derivative.cols());
-    for (int col = 0; col < m_derivatives.size(); ++col)
-        m_derivatives.at(col) = derivative(col);
+    // vlcMessage.Write("Derivatives: " + lexical_cast<string>(derivative));
+
+    m_derivatives.resize(derivative.rows());
+    for (int row = 0; row < m_derivatives.size(); ++row)
+        m_derivatives.at(row) = derivative(row);
+
+    // cout << "m_derivatives: " << m_derivatives << endl;
+    // vlcMessage.Write("m_Derivatives: " + lexical_cast<string>(m_derivatives));
 }
 
 double LogisticRegressionOptimisationFunction::getCost()

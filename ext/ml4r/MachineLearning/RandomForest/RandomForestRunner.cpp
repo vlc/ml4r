@@ -17,7 +17,8 @@
 
 #include <boost/pointer_cast.hpp>
 using boost::dynamic_pointer_cast;
-#include <math.h>
+// #include <math.h>
+#include <cmath>
 
 RandomForestRunner::RandomForestRunner()
 {

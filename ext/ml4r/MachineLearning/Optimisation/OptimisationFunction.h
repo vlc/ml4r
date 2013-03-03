@@ -9,8 +9,8 @@ using boost::shared_ptr;
 class OptimisationFunction
 {
 public:
-	OptimisationFunction();
-	~OptimisationFunction();
+    OptimisationFunction() {};
+    ~OptimisationFunction() {};
 
     virtual void            updateUsingParameters(vector<double> parameters) = 0;
     virtual double          getCost() = 0;

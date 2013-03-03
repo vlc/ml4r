@@ -22,14 +22,14 @@ public:
     MLData();
     ~MLData();
 
-    void setXs(std::vector<std::vector<double> > xs);
-    void setYs(std::vector<double> ys);
-    void setWeights(std::vector<double> ws);
+    void addObservation(std::vector<double> xs, double y);
+    void addObservation(std::vector<double> xs, double y, double weight, double initialPrediction);
+    void reserve(int numObservations);
 
     std::vector<std::vector<double> >   getXs();
     std::vector<double>                 getYs();
     std::vector<double>                 getWeights();
-    std::vector<double>                 getPredictions();
+    std::vector<double>                 getPredictions ();
 
     void setExperiments(std::vector<shared_ptr<MLExperiment> > experiments);
     std::vector<shared_ptr<MLExperiment> >& getExperiments();
@@ -53,6 +53,7 @@ public:
     std::vector<std::string> getFeatureNames();
     void  setFeatureNames(std::vector<std::string> features);
     int   getFeatureIndex(std::string& feature);
+    vector<int> getFeatureIndices(vector<string>& featureNames);
 
     void        constructCategories(std::vector<std::string> categoricalFeatures);
     set<int>&   getCategoricalFeatureIndices();
@@ -66,6 +67,7 @@ public:
     void setMissingValue(double missingValue);
     bool missingValueDefined();
     double getMissingValue();
+
 protected:
     void createEmptyExperiments(int size);
 
@@ -81,6 +83,7 @@ protected:
     vector<int>                        m_foldNumbers;
     double                             m_missingValue;
     bool                               m_missingValueDefined;
+    int                                 m_featureCount;
     // map<int, vector<shared_ptr<MLExperiment> > > m_experimentsSortedByFeature;
 };
 

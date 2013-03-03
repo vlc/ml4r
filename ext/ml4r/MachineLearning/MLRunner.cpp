@@ -8,6 +8,12 @@
 
 #include "utils/VlcMessage.h"
 
+#include <boost/lexical_cast.hpp>
+using boost::lexical_cast;
+
+#include <algorithm>
+using std::max;
+
 // #ifdef TBB_USE_THREADING_TOOLS
 // #undef TBB_USE_THREADING_TOOLS
 // #endif
@@ -140,9 +146,11 @@ vector<double> MLRunner::getMeanTrainingPredictions()
     meanPredictions.reserve(experimentCount);
 
     vector<vector<double> > predictionsForEachFold(experimentCount);
-    
+
+    int numberOfTrainingPredictions = (m_outputObjects.size() == 1 ? 1 : (m_outputObjects.size() - 1));
+
     BOOST_FOREACH(vector<double>& experimentPredictions, predictionsForEachFold)
-        experimentPredictions.reserve(m_outputObjects.size() - 1);
+        experimentPredictions.reserve(numberOfTrainingPredictions);
     
     BOOST_FOREACH(shared_ptr<MLOutput> outputObject, m_outputObjects)
     {

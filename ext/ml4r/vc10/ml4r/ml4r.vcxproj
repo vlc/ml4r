@@ -45,8 +45,11 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Rakefile" />
     <None Include="..\..\LinearRegression\LinearRegression.i" />
+    <None Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.i" />
     <None Include="..\..\MachineLearning\MLData\MLData.i" />
+    <None Include="..\..\MachineLearning\MLRunner.i" />
     <None Include="..\..\ml4r.i" />
     <None Include="..\..\stl_structures.i" />
   </ItemGroup>

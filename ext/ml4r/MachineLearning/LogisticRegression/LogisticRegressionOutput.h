@@ -23,12 +23,12 @@ public:
     double  predictForExperiment(shared_ptr<MLExperiment> experiment);
 
     // custom to logistic regression
-    void    setParameters(vector<int> featureIndices, vector<double> parameterEstimates);
+    void    setParameters(vector<int>& featureIndices, vector<double>& parameterEstimates);
 protected:
 
 	shared_ptr<LogisticRegressionParameters> m_parameters;
-    vector<int>     featureIndices;
-    vector<double>  parameterEstimates;
+    vector<int>     m_featureIndices;
+    vector<double>  m_parameterEstimates;
 
 private:
 };

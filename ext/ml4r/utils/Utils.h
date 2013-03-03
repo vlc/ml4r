@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <map>
 #include <boost/foreach.hpp>
+#include <cmath>
 using std::map;
 using std::vector;
 
@@ -121,7 +122,7 @@ namespace Utils
 
         for (unsigned int i=0; i < vec.size(); ++i)
         {
-            absVec.push_back((T)abs(vec.at(i))); 
+            absVec.push_back((T)std::abs(vec.at(i))); 
         }
         return absVec; 
     }
@@ -155,7 +156,6 @@ namespace Utils
     {
         // setup the initial value to test against
         T currentMax = (vec.size() > 0) ? vec.at(0) : 0; 
-
         for (int i = 0; i < vec.size(); ++i)
             if (vec[i] > currentMax)
                 currentMax = vec[i];
@@ -175,6 +175,50 @@ namespace Utils
             currentMaxIndex = index; 
         }
         return currentMaxIndex; 
+    }
+
+    template<class T>
+    T vectorMin(vector<T>& vec)
+    {
+        T currentMin = (vec.size() > 0) ? vec.at(0) : 0;  
+        
+        for (int i = 0; i < vec.size(); ++i)
+        {
+            if (vec[i] < currentMin) 
+                currentMin = vec[i];
+        }
+        return currentMin; 
+    }
+
+    template<class T>
+    int vectorMinIndex(vector<T>& vec)
+    {
+        if (vec.size() == 0) return -1;
+        T currentMin = vec[0];
+        int currentMinIndex = 0; 
+        for (unsigned int index = 1; index < vec.size(); ++index)
+        {
+            if (vec[index] >= currentMin) continue; 
+            currentMin      = vec[index]; 
+            currentMinIndex = index; 
+        }
+        return currentMinIndex; 
+    }
+
+};
+
+namespace std 
+{
+    template<class T>
+    ostream& operator<<(ostream &os, const vector<T> &vec)
+    {
+        os << (vec.begin(), vec.end(), vec.size() < 10 ? " " : "\n"); 
+        for (int i=0; i<vec.size(); ++i)
+            if (i==0)
+                os << vec.at(i);
+            else
+                os << "," << vec.at(i);
+        return os; 
     }
 };
 

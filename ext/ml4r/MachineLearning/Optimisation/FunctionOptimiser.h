@@ -12,8 +12,8 @@ class OptimisationFunction;
 class FunctionOptimiser
 {
 public:
-    FunctionOptimiser();
-    ~FunctionOptimiser();
+    FunctionOptimiser()  {};
+    ~FunctionOptimiser() {};
     
     void setFunction(shared_ptr<OptimisationFunction> function) { m_function = function; }
     void setSeedParameterEstimates(vector<double> seedParameterEstimates) { m_seedParameterEstimates = seedParameterEstimates; }

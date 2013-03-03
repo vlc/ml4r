@@ -3,11 +3,16 @@
 #include "utils/Utils.h"
 
 #include <boost/foreach.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/lexical_cast.hpp>
 using boost::lexical_cast;
+using boost::make_shared;
 
 MLData::MLData() : m_missingValueDefined(false)
-{}
+{
+    m_foldNumbers.push_back(0);
+    m_featureCount = 0;
+}
 
 MLData::~MLData()
 {}
@@ -212,65 +217,16 @@ vector<int> MLData::getFolds()
     return folds;
 }
 
-void MLData::setXs( vector<vector<double> > xs )
-{
-    if (m_experiments.size() != 0 && m_experiments.size() != xs.size())
-        throw std::runtime_error("[MLData::setXs] - length of xs does not match number of existing records");
-
-    if (m_experiments.size() == 0)
-        createEmptyExperiments(xs.size());
-
-    for (int i = 0; i < xs.size(); ++i)
-        m_experiments.at(i)->setFeatureValues(xs.at(i));
-}
-
-void MLData::setYs( vector<double> ys )
-{
-    if (m_experiments.size() != 0 && m_experiments.size() != ys.size())
-        throw std::runtime_error("[MLData::setXs] - length of ys does not match number of existing records");
-
-    if (m_experiments.size() == 0)
-        createEmptyExperiments(ys.size());
-
-    for (int i = 0; i < ys.size(); ++i)
-        m_experiments.at(i)->setY(ys.at(i));
-
-}
-
-void MLData::setWeights( vector<double> ws )
-{
-    if (m_experiments.size() != 0 && m_experiments.size() != ws.size())
-        throw std::runtime_error("[MLData::setWeights] - length of weights does not match number of existing records");
-
-    if (m_experiments.size() == 0)
-        createEmptyExperiments(ws.size());
-
-    for (int i = 0; i < ws.size(); ++i)
-        m_experiments.at(i)->setWeight(ws.at(i));
-}
-
 void MLData::setInitialPredictions( vector<double> initialPredictions )
 {
-    if (m_experiments.size() != 0 && m_experiments.size() != initialPredictions.size())
+    if (m_experiments.size() != initialPredictions.size())
         throw std::runtime_error("[MLData::setInitialPredictions] - Initial predictions are not of the same length as existing records. " +
         lexical_cast<string>(initialPredictions.size()) + " versus " + lexical_cast<string>(m_experiments.size()));
-
-    if (m_experiments.size() == 0)
-        createEmptyExperiments(initialPredictions.size());
 
     for (int i = 0; i < initialPredictions.size(); ++i)
         m_experiments.at(i)->setPrediction(initialPredictions.at(i));
 
     m_initialPredictionsDefined = true;
-}
-
-void MLData::createEmptyExperiments( int size )
-{
-    m_experiments.clear();
-    m_experiments.reserve(size);
-
-    for (int i = 0; i < size; ++i)
-        m_experiments.push_back(shared_ptr<MLExperiment>(new MLExperiment()));
 }
 
 std::vector<std::vector<double> > MLData::getXs()
@@ -323,6 +279,48 @@ std::vector<double> MLData::getPredictions()
         returnValue.at(index) = experiment->getPrediction();
     }
     return returnValue;
+}
+
+void MLData::addObservation( vector<double> xs, double y )
+{
+    addObservation(xs,y,1.0,0.0);
+}
+
+void MLData::addObservation( vector<double> xs, double y, double weight, double initialPrediction )
+{
+    if (m_featureCount == 0)
+    {
+        m_featureCount = xs.size();
+        vector<string> featureNames;
+        for (int i = 0; i < m_featureCount; ++i) 
+            featureNames.push_back(string("X") + lexical_cast<string>(i));
+        setFeatureNames(featureNames);
+    }
+    else if (m_featureCount != xs.size())
+        throw std::runtime_error("[MLData::addObservation] - invalid number of elements in x");
+    // int experimentId, int experimentIndex, double y, double initialPrediction,
+    //double weight, vector<double> features
+    int index = m_experiments.size();
+    shared_ptr<MLExperiment> experiment = 
+        make_shared<MLExperiment>(index,index,y,initialPrediction,weight,xs);
+
+    m_experiments.push_back(experiment);
+    m_trainingExperiments[0].push_back(experiment);
+    m_experimentsById[index] = experiment;
+}
+
+void MLData::reserve( int numObservations )
+{
+    m_experiments.reserve(numObservations);
+}
+
+vector<int> MLData::getFeatureIndices( vector<string>& featureNames )
+{
+    vector<int> featureIndices;
+    BOOST_FOREACH(string featureName, featureNames)
+        featureIndices.push_back(getFeatureIndex(featureName));
+
+    return featureIndices;
 }
 
 

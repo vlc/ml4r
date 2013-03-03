@@ -43,3 +43,8 @@ VectorXd MLDataUtils::makeMlDataResponseVector( vector<shared_ptr<MLExperiment> 
     }
     return responseVector;
 }
+
+vector<int> MLDataUtils::findValidFeaturesForRegression( vector<shared_ptr<MLExperiment> > experiments, vector<int> featuresIndicesToRun )
+{
+
+}

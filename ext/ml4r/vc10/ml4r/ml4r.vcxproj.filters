@@ -81,6 +81,15 @@
     <None Include="..\..\MachineLearning\MLData\MLData.i">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\MachineLearning\LogisticRegression\LogisticRegressionRunner.i">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\MachineLearning\MLRunner.i">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Rakefile">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ml4r_wrap.cpp">

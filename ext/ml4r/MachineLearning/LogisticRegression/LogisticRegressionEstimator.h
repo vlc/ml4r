@@ -20,8 +20,13 @@ public:
 
     shared_ptr<MLOutput> estimate();
 protected:
-	
+	void determineValidFeatures();
+    vector<double> getFeatureVector(int featureIndex);
+    vector<double> getFeatureValuesGivenY(int featureIndex, double y);
     shared_ptr<LogisticRegressionParameters> m_parameters;
+
+    vector<int>     m_validFeatureIndices;
+    vector<double>  m_seedValuesForValidFeatures;
 private:
 };
 #endif // LogisticRegressionEstimator_h__
