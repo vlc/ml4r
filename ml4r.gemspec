@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = ['jamie@ieee.org', "tim.veitch@veitchlister.com.au"]
   s.files       = Dir.glob('lib/**/*.rb') +
                   Dir.glob('ext/**/*.{c,cpp,h,rb}')
-  s.extensions = ['ext/ml4r/extconf.rb']                
+  s.extensions = ['ext/ml4r/extconf.rb']
   s.homepage    = 'https://github.com/vlc/ml4r'
 end
