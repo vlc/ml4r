@@ -7,20 +7,20 @@ class OLSLinearRegression : public LinearRegression
 {
 public:
 
-	OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
-	                    std::vector<double> weights = std::vector<double>());
+    OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+                        std::vector<double> weights = std::vector<double>());
     OLSLinearRegression(std::vector<double> xs, std::vector<double> ys,
-    	                std::vector<double> weights = std::vector<double>());
+                        std::vector<double> weights = std::vector<double>());
     OLSLinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys, double fixedConstant,
                         std::vector<double> weights = std::vector<double>());
-	~OLSLinearRegression();
+    ~OLSLinearRegression();
 
     void calculate();
 
     void EstimateBs();
 
 protected:
-	
+  
 private:
 };
 

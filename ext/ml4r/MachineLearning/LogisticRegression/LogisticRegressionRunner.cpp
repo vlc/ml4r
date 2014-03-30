@@ -28,7 +28,8 @@ LogisticRegressionRunner::~LogisticRegressionRunner()
 
 shared_ptr<MLEstimator> LogisticRegressionRunner::createEstimator( MLData* data, vector<shared_ptr<MLExperiment> > trainingExperiments )
 {
-    shared_ptr<LogisticRegressionEstimator> estimator = make_shared<LogisticRegressionEstimator>(data, trainingExperiments, parameters);
+    boost::shared_ptr<LogisticRegressionEstimator> estimator =
+        boost::make_shared<LogisticRegressionEstimator>(data, trainingExperiments, parameters);
     return shared_ptr<MLEstimator>(estimator);
 }
 

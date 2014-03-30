@@ -11,7 +11,7 @@ using std::string;
 using boost::lexical_cast;
 using namespace std;
 
-LogisticRegressionOptimisationFunction::LogisticRegressionOptimisationFunction( vector<shared_ptr<MLExperiment> > trainingExperiments, vector<int> featureIndices, double regularisationParameter )
+LogisticRegressionOptimisationFunction::LogisticRegressionOptimisationFunction(vector<boost::shared_ptr<MLExperiment> > trainingExperiments, vector<int> featureIndices, double regularisationParameter)
     : m_trainingExperiments(trainingExperiments), m_featureIndices(featureIndices),
       m_regularisationParameter(regularisationParameter)
 {

@@ -34,7 +34,7 @@ MatrixXd MLDataUtils::makeMlDataFeatureMatrix( vector<shared_ptr<MLExperiment> >
 VectorXd MLDataUtils::makeMlDataResponseVector( vector<shared_ptr<MLExperiment> > experiments )
 {
     VectorXd responseVector(experiments.size());
-    
+
     int index = -1;
     BOOST_FOREACH(shared_ptr<MLExperiment> experiment, experiments)
     {

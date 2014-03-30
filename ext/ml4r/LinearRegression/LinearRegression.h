@@ -11,11 +11,11 @@ using std::pair;
 class LinearRegression
 {
 public:
-	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
-	                 std::vector<double> weights = std::vector<double>())
-	: m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false) {}
+	  LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys,
+	                   std::vector<double> weights = std::vector<double>())
+	  : m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false) {}
 
-	LinearRegression(std::vector<double> xs, std::vector<double> ys,
+	  LinearRegression(std::vector<double> xs, std::vector<double> ys,
                      std::vector<double> weights = std::vector<double>())
     : m_ys(ys), m_ws(weights), m_constantIsFixed(false), m_paramsAreValid(false)
     {
@@ -23,10 +23,10 @@ public:
         for (unsigned int i=0; i<xs.size(); ++i) m_xs.at(i).resize(1, xs.at(i));
     }
 
-	LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys, double fixedConstant,
+	  LinearRegression(std::vector<std::vector<double> > xs, std::vector<double> ys, double fixedConstant,
                      std::vector<double> weights = std::vector<double>())
     : m_xs(xs), m_ys(ys), m_ws(weights), m_constantIsFixed(true), m_constant(fixedConstant), m_paramsAreValid(false) {}
-	~LinearRegression() {}
+	  ~LinearRegression() {}
 
     pair<std::vector<double>,double>  getParameterEstimates();
     std::vector<double>&              getFittedYs();

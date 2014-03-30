@@ -16,7 +16,7 @@ class MLRunner
 {
 public:
     MLRunner();
-    ~MLRunner();
+    virtual ~MLRunner();
 
     void execute();
 

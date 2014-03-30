@@ -6,6 +6,7 @@
 #include <map>
 #include <boost/foreach.hpp>
 #include <cmath>
+#include <ostream>
 using std::map;
 using std::vector;
 
@@ -23,12 +24,12 @@ namespace Utils
         return m.find(element) != m.end();
     }
 
-    template<typename T> 
+    template<typename T>
     int vectorIndex(vector<T>& c, T element)
     {
         if (find(c.begin(), c.end(), element) == c.end())
             return -1;
-        return (int) (find(c.begin(), c.end(), element) - c.begin()); 
+        return (int) (find(c.begin(), c.end(), element) - c.begin());
     }
 
     template<typename T>
@@ -52,7 +53,7 @@ namespace Utils
         returnValue.resize(numSteps);
 
         for (int i = 0; i < numSteps; ++i)
-            returnValue.at(i) = start + i * stepSize; 
+            returnValue.at(i) = start + i * stepSize;
 
         return returnValue;
     }
@@ -72,17 +73,8 @@ namespace Utils
         return returnValue;
     }
 
-    template<class T> vector<T>
-    vectorShuffle(vector<T>& vec)
-    {
-
-        vector<int> sortVector = vectorOfRandomInt(vec.size());
-        vector<T> returnValue  = vectorSortUsingOtherVector(vec, sortVector);
-        return returnValue;
-    }
-
     vector<int> vectorOfRandomInt(int length);
-    
+
     template<class T, class U>
     vector<T> vectorSortUsingOtherVector(vector<T>& vec, vector<U>& otherVector)
     {
@@ -113,7 +105,15 @@ namespace Utils
         }
         return returnValue;
     }
-    
+
+    template<class T> vector<T>
+    vectorShuffle(vector<T>& vec)
+    {
+        vector<int> sortVector = vectorOfRandomInt(vec.size());
+        vector<T> returnValue  = vectorSortUsingOtherVector(vec, sortVector);
+        return returnValue;
+    }
+
     template<class T>
     std::vector<T> vectorAbs(const std::vector<T>& vec)
     {
@@ -122,9 +122,9 @@ namespace Utils
 
         for (unsigned int i=0; i < vec.size(); ++i)
         {
-            absVec.push_back((T)std::abs(vec.at(i))); 
+            absVec.push_back((T)std::abs(vec.at(i)));
         }
-        return absVec; 
+        return absVec;
     }
 
     template<class T> std::vector<T>& operator+=(std::vector<T>& vec, const std::vector<T>& vec2)
@@ -136,7 +136,7 @@ namespace Utils
         return vec;
     }
 
-    template <class T> 
+    template <class T>
     std::vector<T>& operator+=(std::vector<T>& vec, const float offset)
     {
         for (unsigned int i=0; i < vec.size(); ++i)
@@ -144,7 +144,7 @@ namespace Utils
         return vec;
     }
 
-    template <class T> 
+    template <class T>
     std::vector<T>& operator*=(vector<T>& vec, const float factor)
     {
         BOOST_FOREACH(T& t, vec) t *= factor;
@@ -155,39 +155,39 @@ namespace Utils
     T vectorMax(vector<T>& vec)
     {
         // setup the initial value to test against
-        T currentMax = (vec.size() > 0) ? vec.at(0) : 0; 
+        T currentMax = (vec.size() > 0) ? vec.at(0) : 0;
         for (unsigned int i = 0; i < vec.size(); ++i)
             if (vec[i] > currentMax)
                 currentMax = vec[i];
-        return currentMax; 
+        return currentMax;
     }
 
     template<class T>
     int vectorMaxIndex(vector<T>& vec)
     {
-        if (vec.size() == 0) return -1;  //? vec.at(0) : 0;  
+        if (vec.size() == 0) return -1;  //? vec.at(0) : 0;
         T currentMax = vec[0];
-        int currentMaxIndex = 0; 
+        int currentMaxIndex = 0;
         for (unsigned int index = 1; index < vec.size(); ++index)
         {
-            if (vec[index] <= currentMax) continue; 
-            currentMax      = vec[index]; 
-            currentMaxIndex = index; 
+            if (vec[index] <= currentMax) continue;
+            currentMax      = vec[index];
+            currentMaxIndex = index;
         }
-        return currentMaxIndex; 
+        return currentMaxIndex;
     }
 
     template<class T>
     T vectorMin(vector<T>& vec)
     {
-        T currentMin = (vec.size() > 0) ? vec.at(0) : 0;  
-        
+        T currentMin = (vec.size() > 0) ? vec.at(0) : 0;
+
         for (unsigned int i = 0; i < vec.size(); ++i)
         {
-            if (vec[i] < currentMin) 
+            if (vec[i] < currentMin)
                 currentMin = vec[i];
         }
-        return currentMin; 
+        return currentMin;
     }
 
     template<class T>
@@ -195,31 +195,31 @@ namespace Utils
     {
         if (vec.size() == 0) return -1;
         T currentMin = vec[0];
-        int currentMinIndex = 0; 
+        int currentMinIndex = 0;
         for (unsigned int index = 1; index < vec.size(); ++index)
         {
-            if (vec[index] >= currentMin) continue; 
-            currentMin      = vec[index]; 
-            currentMinIndex = index; 
+            if (vec[index] >= currentMin) continue;
+            currentMin      = vec[index];
+            currentMinIndex = index;
         }
-        return currentMinIndex; 
+        return currentMinIndex;
     }
 
 };
 
-namespace std 
+namespace std
 {
     template<class T>
-    ostream& operator<<(ostream &os, const vector<T> &vec)
+    ostream& operator<<(ostream &os, const std::vector<T> &vec)
     {
-        os << (vec.begin(), vec.end(), vec.size() < 10 ? " " : "\n"); 
+        os << (vec.begin(), vec.end(), vec.size() < 10 ? " " : "\n");
         for (int i=0; i<vec.size(); ++i)
             if (i==0)
                 os << vec.at(i);
             else
                 os << "," << vec.at(i);
-        return os; 
+        return os;
     }
 };
 
-#endif 
+#endif

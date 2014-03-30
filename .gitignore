@@ -6,3 +6,4 @@
 *.gem
 Makefile
 .DS_Store
+.idea

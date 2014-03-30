@@ -1,6 +1,6 @@
 require 'ml4r_test_case'
 require 'ml4r/ml4r'
-require 'ml4r/linear_regression'
+# require 'ml4r/linear_regression'
 
 class TestLinearRegression < Ml4rTestCase
   DELTA = 0.0001
